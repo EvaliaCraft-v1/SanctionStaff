@@ -1,6 +1,5 @@
 package com.elikill58.sanction.spigot.inventories.hook;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -15,7 +14,6 @@ import com.elikill58.sanction.spigot.inventories.AbstractInventory;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
 import com.elikill58.sanction.spigot.inventories.holder.SanctionPlayerHolder;
 import com.elikill58.sanction.spigot.utils.Items;
-import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 import com.elikill58.sanction.universal.UniversalUtils;
 
 public class SanctionPlayerInventory extends AbstractInventory<SanctionPlayerHolder> {
@@ -59,13 +57,7 @@ public class SanctionPlayerInventory extends AbstractInventory<SanctionPlayerHol
 
 	public static void runCommand(Player player, Player cible, Action ac) {
 		String cmd = UniversalUtils.replacePlaceholder(ac.getCommand(), "%player%", cible.getName(), "%executor%", player.getName(), "%executor_uuid%", player.getUniqueId());
-		if(ac.isProxy()) {
-			SanctionSpigot.getInstance().getLogger().info(player.getName() + " sanction " + cible.getName() + ": running '" + cmd + "' bungee command.");
-			SpigotToBungee.sendCmdToBungee(player, cmd);
-		} else {
-			SanctionSpigot.getInstance().getLogger().info(player.getName() + " sanction " + cible.getName() + ": running '" + cmd + "' spigot command.");
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), cmd);
-		}
+		SanctionSpigot.runCommand(player, cmd, ac.isProxy(), false);
 		Msg.sendMsg(player, "applied", "%name%", cible.getName());
 		player.closeInventory();
 	}

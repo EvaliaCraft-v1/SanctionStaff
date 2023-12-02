@@ -26,6 +26,8 @@ main:
       name: "&a%name%"
       lore:
       - "&7Clic pour find"
+      command: "find %name%"
+      proxy: true
     sanctions:
       material: ENCHANTED_BOOK
       name: "&aSanction"
@@ -36,11 +38,15 @@ main:
       name: "&aDupeip"
       lore:
       - "&7Dupeip le joueur"
+      command: "dupeip %name%"
+      proxy: false
     history:
       material: BOOK
       name: "&aHistorique"
       lore:
       - "&7Voir l'historique du joueur"
+      command: "history %name%"
+      proxy: false
     teleport:
       material: COMPASS
       name: "&aTéléportation"
@@ -48,12 +54,17 @@ main:
       - "&7Se téléporter au joueur"
       - ""
       - "&cAttention: Soyez bien en vanish AVANT de vous TP"
+      command: "teleport %name%"
+      proxy: false
+      as_player: true
     bell:
       command: "mycmd"
       material: BELL
       name: "&aMa cmd"
       lore:
       - "&7Lancement de mycmd"
+      command: "mycmd"
+      proxy: false
 
 kick:
   items:

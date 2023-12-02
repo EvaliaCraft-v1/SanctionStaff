@@ -47,20 +47,31 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 		int slot = e.getSlot();
 		if(slot == 10) {
 			p.closeInventory();
-			SpigotToBungee.sendPlayerCmdToBungee(p, "find");
+			runCmd(p, nh.getCible(), "main.items.head");
 		} else if (slot == 12)
 			InventoryManager.openInventory(p, "SANCTION_CATEGORY", nh.getCible());
 		else if (slot == 13) {
 			p.closeInventory();
-			SpigotToBungee.sendPlayerCmdToBungee(p, "dupeip");
+			runCmd(p, nh.getCible(), "main.items.dupeip");
 		} else if (slot == 14) {
 			p.closeInventory();
-			SpigotToBungee.sendPlayerCmdToBungee(p, "history");
+			runCmd(p, nh.getCible(), "main.items.history");
 		} else if (slot == 15) {
-			p.teleport(nh.getCible());
+			p.closeInventory();
+			runCmd(p, nh.getCible(), "main.items.teleport");
 		} else if (slot == 16) {
 			p.closeInventory();
-			p.performCommand(SanctionSpigot.getInstance().getConfig().getString("main.items.bell.command"));
+			runCmd(p, nh.getCible(), "main.items.bell");
 		}
+	}
+	
+	private void runCmd(Player p, Player cible, String dir) {
+		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
+		String cmd = config.getString(dir + ".command");
+		if(cmd == null)
+			return;
+		boolean proxy = config.getBoolean(dir + ".proxy", false);
+		boolean asPlayer = config.getBoolean(dir + ".as_player", true);
+		SanctionSpigot.runCommand(p, cmd.replace("%name%", cible.getName()), proxy, asPlayer);
 	}
 }
