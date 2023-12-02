@@ -1,6 +1,9 @@
 package com.elikill58.sanction.bungee;
 
+import com.elikill58.sanction.bungee.command.ChatStaffCommand;
+
 import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.api.plugin.PluginManager;
 
 public class SanctionBungee extends Plugin {
 
@@ -12,8 +15,11 @@ public class SanctionBungee extends Plugin {
 	@Override
 	public void onEnable() {
 		instance = this;
-
-		getProxy().getPluginManager().registerListener(this, new BungeeListener());
+		BungeeConfig.init(this);
+		
+		PluginManager pm = getProxy().getPluginManager();
+		pm.registerListener(this, new BungeeListener());
+		pm.registerCommand(this, new ChatStaffCommand());
 
 		getProxy().registerChannel("sanction:sanctioncmd");
 	}

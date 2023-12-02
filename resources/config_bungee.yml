@@ -1,0 +1,7 @@
+messages:
+  cs:
+    help: "/cs <message>"
+    message: "&c(&6%server%&c) -> %name% : &f%message%"
+
+permissions:
+  chatstaff: "sanction.cs"
