@@ -15,6 +15,7 @@ import com.elikill58.sanction.spigot.inventories.InventoryManager;
 import com.elikill58.sanction.spigot.inventories.holder.SanctionPlayerHolder;
 import com.elikill58.sanction.spigot.utils.Items;
 import com.elikill58.sanction.spigot.utils.SpigotToBungee;
+import com.elikill58.sanction.universal.UniversalUtils;
 
 public class SanctionPlayerInventory extends AbstractInventory<SanctionPlayerHolder> {
 
@@ -56,7 +57,7 @@ public class SanctionPlayerInventory extends AbstractInventory<SanctionPlayerHol
 	}
 
 	public static void runCommand(Player player, Player cible, Action ac) {
-		String cmd = ac.getCommand().replace("%player%", cible.getName()).replace("%executor%", player.getName()).replace("%executor_uuid%", player.getUniqueId().toString());
+		String cmd = UniversalUtils.replacePlaceholder(ac.getCommand(), "%player%", cible.getName(), "%executor%", player.getName(), "%executor_uuid%", player.getUniqueId());
 		SanctionSpigot.getInstance().getLogger().info(player.getName() + " sanction " + cible.getName() + ": running '" + cmd + "' bungee command.");
 		SpigotToBungee.sendCmdToBungee(player, cmd);
 		SanctionSpigot.logs(player.getName(), ac.getCommand().replace("%player%", cible.getName()));

@@ -1,20 +1,18 @@
 package com.elikill58.sanction.bungee;
 
 import com.elikill58.sanction.universal.ChatUtils;
+import com.elikill58.sanction.universal.UniversalUtils;
 
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class BMsg {
 
-	public static void sendMsg(CommandSender sender, String name, String... placeholders) {
+	public static void sendMsg(CommandSender sender, String name, Object... placeholders) {
 		sender.sendMessage(new TextComponent(getMsg(name, placeholders)));
 	}
 
-	public static String getMsg(String name, String... placeholders) {
-		String message = BungeeConfig.getConfig().getString("messages." + name, name);
-		for (int index = 0; index <= placeholders.length - 1; index += 2)
-			message = message.replaceAll(placeholders[index], placeholders[index + 1]);
-		return ChatUtils.applyColorCodes(message);
+	public static String getMsg(String name, Object... placeholders) {
+		return ChatUtils.applyColorCodes(UniversalUtils.replacePlaceholder(BungeeConfig.getConfig().getString("messages." + name, name), placeholders));
 	}
 }
