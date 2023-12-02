@@ -11,13 +11,19 @@ import com.elikill58.sanction.spigot.utils.Items;
 
 public enum ActionType {
 
-	BAN(11), KICK(13), MUTE(15);
+	BAN("Ban", 11), KICK("Kick", 13), MUTE("Mute", 15);
 
+	private final String name;
 	private final int slot;
 	private final List<Action> actions = new ArrayList<>();
 	
-	private ActionType(int slot) {
+	private ActionType(String name, int slot) {
+		this.name = name;
 		this.slot = slot;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public List<Action> getActions() {

@@ -23,9 +23,9 @@ main:
       - "&7Sanctionner le joueur"
     dupeip:
       material: NAME_TAG
-      name: "&aSanction"
+      name: "&aDupeip"
       lore:
-      - "&7Sanctionner le joueur"
+      - "&7Dupeip le joueur"
     history:
       material: BOOK
       name: "&aHistorique"
@@ -38,7 +38,8 @@ main:
       - "&7Se téléporter au joueur"
       - ""
       - "&cAttention: Soyez bien en vanish AVANT de vous TP"
-    find:
+    bell:
+      command: "mycmd"
       material: ENDER_EYE
       name: "&aFind"
       lore:
@@ -46,7 +47,8 @@ main:
 category:
   inv_name: "Menu | Joueur %name%"
 
-
+sanction_player:
+  inv_name: "Menu | %type% %name%"
 
 kick:
   items:

@@ -1,7 +1,5 @@
 package com.elikill58.sanction.spigot.inventories.hook;
 
-import java.util.Arrays;
-
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -30,8 +28,8 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 		Inventory inv = createInventory(new SanctionMainHolder(cible), 27, Msg.getMsg("main.inv_name", "%name%", cible.getName()));
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 
-		for (int slot : Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26))
-			inv.setItem(slot, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
+		for (int i = 0; i < inv.getSize(); i++)
+			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
 		
 		inv.setItem(10, new ItemStackBuilder(Material.PLAYER_HEAD).tryOwner(cible).build());
 		
@@ -47,7 +45,9 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 	@Override
 	public void manageInventory(InventoryClickEvent e, Material m, Player p, SanctionMainHolder nh) {
 		int slot = e.getSlot();
-		if (slot == 12)
+		if(slot == 10) 
+			SpigotToBungee.sendPlayerCmdToBungee(p, "find");
+		else if (slot == 12)
 			InventoryManager.openInventory(p, "SANCTION_CATEGORY", nh.getCible());
 		else if (slot == 13) {
 			p.closeInventory();
@@ -59,7 +59,7 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 			p.teleport(nh.getCible());
 		} else if (slot == 16) {
 			p.closeInventory();
-			SpigotToBungee.sendPlayerCmdToBungee(p, "find");
+			p.performCommand(SanctionSpigot.getInstance().getConfig().getString("main.items.bell.command"));
 		}
 	}
 }
