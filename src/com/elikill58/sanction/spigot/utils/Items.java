@@ -1,8 +1,5 @@
 package com.elikill58.sanction.spigot.utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -30,12 +27,10 @@ public class Items {
 		if (sec.contains("name"))
 			builder.displayName(UniversalUtils.replacePlaceholder(sec.getString("name"), placeholder));
 		if (sec.contains("lore")) {
-			List<String> lore = new ArrayList<>();
-			if (sec.get("lore") instanceof List)
-				lore = sec.getStringList("lore");
+			if(sec.isList("lore"))
+				builder.lore(sec.getStringList("lore"));
 			else
-				lore.add(sec.getString("lore"));
-			builder.lore(lore);
+				builder.lore(sec.getString("lore"));
 		}
 		if (sec.contains("unbreakable"))
 			builder.unbreakable(sec.getBoolean("unbreakable", false));

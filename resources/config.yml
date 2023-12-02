@@ -5,6 +5,12 @@ messages:
   no_touch: "&cCe joueur ne peux recevoir de sanction de votre part."
   select: "&aLe joueur selectioné est %name%."
   applied: "&cSanction&7: &c&6%name% !"
+  category:
+    inv_name: "Menu | Joueur %name%"
+  sanction_player:
+    inv_name: "Menu | %type% %name%"
+  main:
+    inv_name: "Sanction de %name%"
 
 permissions:
   admin: sanction.command.manager"
@@ -14,7 +20,6 @@ back-item:
   name: "&cRetour"
 
 main:
-  inv_name: "Sanction de %name%"
   items:
     head:
       material: PLAYER_HEAD
@@ -49,20 +54,21 @@ main:
       name: "&aFind"
       lore:
       - "&7Find le joueur"
-category:
-  inv_name: "Menu | Joueur %name%"
-
-sanction_player:
-  inv_name: "Menu | %type% %name%"
 
 kick:
   items:
     main:
       material: STICK
+      name: "Kick"
+      lore:
+      - "&7Options pour kick le joueur"
 mute:
   items:
     main:
       material: PAPER
+      name: "Mute"
+      lore:
+      - "&7Options pour mute le joueur"
   actions:
     1:
       slot: 10
@@ -81,6 +87,9 @@ ban:
   items:
     main:
       material: BOOK
+      name: "ban"
+      lore:
+      - "&7Options pour ban le joueur"
   actions:
     1:
       slot: 10
