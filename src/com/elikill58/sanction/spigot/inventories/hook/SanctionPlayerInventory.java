@@ -60,7 +60,6 @@ public class SanctionPlayerInventory extends AbstractInventory<SanctionPlayerHol
 		String cmd = UniversalUtils.replacePlaceholder(ac.getCommand(), "%player%", cible.getName(), "%executor%", player.getName(), "%executor_uuid%", player.getUniqueId());
 		SanctionSpigot.getInstance().getLogger().info(player.getName() + " sanction " + cible.getName() + ": running '" + cmd + "' bungee command.");
 		SpigotToBungee.sendCmdToBungee(player, cmd);
-		SanctionSpigot.logs(player.getName(), ac.getCommand().replace("%player%", cible.getName()));
 		Msg.sendMsg(player, "applied", "%name%", cible.getName());
 		player.closeInventory();
 	}

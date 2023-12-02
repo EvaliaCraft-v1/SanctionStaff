@@ -1,14 +1,7 @@
 package com.elikill58.sanction.spigot;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -55,43 +48,6 @@ public class SanctionSpigot extends JavaPlugin {
 		InventoryManager.registerInventory("SANCTION_PLAYER", new SanctionPlayerInventory());
 
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "sanction:sanctioncmd");
-	}
-
-	public static void logs(String player, String cmd) {
-		Calendar cal = Calendar.getInstance();
-		String date = cal.get(5) + "-" + (cal.get(2) + 1) + "-" + cal.get(1);
-		String heure = cal.get(11) + ":" + cal.get(12) + ":" + cal.get(13);
-		String text = date + " " + heure + " " + player + " => " + cmd;
-		File logs = new File("./plugins/" + getInstance().getName() + "/logs/log_" + date + ".txt");
-		if (!logs.exists()) {
-			try {
-				logs.mkdirs();
-				logs.delete();
-				logs.createNewFile();
-				FileWriter fw = new FileWriter(logs);
-				fw.write(text);
-				fw.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
-				FileInputStream inf = new FileInputStream(logs);
-				BufferedReader br = new BufferedReader(new InputStreamReader(inf));
-				String actext = "";
-				String act = "";
-				while ((act = br.readLine()) != null) {
-					actext = actext + "\r\n" + act;
-				}
-				FileWriter fw = new FileWriter(logs);
-				fw.write(text + actext);
-				fw.close();
-				br.close();
-				inf.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 	}
 
 	private void loadActions() {
