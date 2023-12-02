@@ -3,8 +3,8 @@ messages:
   help: "&e/ss <player>"
   not_found: "&c%arg% n'est pas un joueur valide."
   no_touch: "&cCe joueur ne peux recevoir de sanction de votre part."
-  select: "&aLe joueur selectioné est %name%."
-  applied: "&cSanction&7: &c&6%name% !"
+  select: "&aSanction&7: %name%."
+  applied: "&6Sanction appliqué à &c%name% !"
   category:
     inv_name: "Menu | Joueur %name%"
   sanction_player:
@@ -87,7 +87,7 @@ ban:
   items:
     main:
       material: BOOK
-      name: "ban"
+      name: "Ban"
       lore:
       - "&7Options pour ban le joueur"
   actions:

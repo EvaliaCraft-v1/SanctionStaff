@@ -41,7 +41,7 @@ public enum ActionType {
 			return;
 		ItemStack item = Items.getItem(pl.getConfig().getConfigurationSection(name().toLowerCase() + ".items.main"));
 		config.getKeys(false).stream().map(config::getConfigurationSection).forEach(a -> {
-			actions.add(new Action(a.getString("name"), a.getString("lore"), a.getString("command"), a.getString("permission"), item, a.getInt("slot")));
+			actions.add(new Action(a.getString("name"), a.isList("lore") ? String.join("\n", a.getStringList("lore")) : a.getString("lore"), a.getString("command"), a.getString("permission"), item, a.getInt("slot")));
 		});
 	}
 }
