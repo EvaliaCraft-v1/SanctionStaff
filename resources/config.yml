@@ -50,10 +50,10 @@ main:
       - "&cAttention: Soyez bien en vanish AVANT de vous TP"
     bell:
       command: "mycmd"
-      material: ENDER_EYE
-      name: "&aFind"
+      material: BELL
+      name: "&aMa cmd"
       lore:
-      - "&7Find le joueur"
+      - "&7Lancement de mycmd"
 
 kick:
   items:
