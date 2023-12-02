@@ -56,6 +56,20 @@ mute:
   items:
     main:
       material: PAPER
+  actions:
+    1:
+      slot: 10
+      name: "&cInsulte"
+      lore:
+      - "&7Mute pour 2h pour insulte"
+      command: "mute %name% 2h Insulte --sender-uuid=%executor_uuid% --sender=%executor%"
+      permission: "sanction.mute"
+    2:
+      slot: 11
+      name: "&cMenace de mort"
+      lore: "&7Mute pour menace de mort"
+      command: "ban %name% incrr --sender-uuid=%executor_uuid% --sender=%executor%"
+      permission: "sanction.mute"
 ban:
   items:
     main:
@@ -67,3 +81,9 @@ ban:
       lore: "Incroyable ban"
       command: "ban %name% incrr"
       permission: "sanction.ban"
+    2:
+      slot: 11
+      name: "Ban 2"
+      lore: "Incroyable ban"
+      command: "ban %name% incrr"
+      permission: "sanction.ban2"
