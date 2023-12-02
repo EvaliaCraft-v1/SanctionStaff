@@ -40,6 +40,6 @@ public class Action {
 	}
 	
 	public ItemStack toItem() {
-		return new ItemStackBuilder(item).displayName(name).lore(lore).build();
+		return new ItemStackBuilder(item.clone()).displayName(name).lore(lore).build();
 	}
 }

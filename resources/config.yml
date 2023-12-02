@@ -39,7 +39,7 @@ main:
       - ""
       - "&cAttention: Soyez bien en vanish AVANT de vous TP"
     find:
-      material: EYE_OF_ENDER
+      material: ENDER_EYE
       name: "&aFind"
       lore:
       - "&7Find le joueur"
