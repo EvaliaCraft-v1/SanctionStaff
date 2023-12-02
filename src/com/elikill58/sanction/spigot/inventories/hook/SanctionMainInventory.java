@@ -31,13 +31,13 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 		for (int i = 0; i < inv.getSize(); i++)
 			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
 		
-		inv.setItem(10, new ItemStackBuilder(Material.PLAYER_HEAD).tryOwner(cible).build());
+		inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"))).tryOwner(cible).build());
 		
 		inv.setItem(12, Items.getItem(config.getConfigurationSection("main.items.sanctions")));
 		inv.setItem(13, Items.getItem(config.getConfigurationSection("main.items.dupeip")));
 		inv.setItem(14, Items.getItem(config.getConfigurationSection("main.items.history")));
 		inv.setItem(15, Items.getItem(config.getConfigurationSection("main.items.teleport")));
-		inv.setItem(16, Items.getItem(config.getConfigurationSection("main.items.find")));
+		inv.setItem(16, Items.getItem(config.getConfigurationSection("main.items.bell")));
 
 		openInventorySync(p, inv);
 	}

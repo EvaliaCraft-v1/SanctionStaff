@@ -16,6 +16,11 @@ back-item:
 main:
   inv_name: "Sanction de %name%"
   items:
+    head:
+      material: PLAYER_HEAD
+      name: "&a%name%"
+      lore:
+      - "&7Clic pour find"
     sanctions:
       material: ENCHANTED_BOOK
       name: "&aSanction"
