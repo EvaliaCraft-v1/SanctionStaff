@@ -102,4 +102,5 @@ ban:
       name: "Ban 2"
       lore: "Incroyable ban"
       command: "ban %name% incrr"
+      proxy: false
       permission: "sanction.ban2"
