@@ -1,0 +1,56 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+plugins {
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+}
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigot'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        name = 'paper'
+        url = 'https://repo.papermc.io/repository/maven-public/'
+    }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.20.2-R0.1-SNAPSHOT'
+    compileOnly 'io.github.waterfallmc:waterfall-api:1.20-R0.1-SNAPSHOT'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+archivesBaseName = 'SanctionStaff'
+
+sourceSets.main {
+    java.srcDirs = ['src']
+    resources.srcDirs = ['resources']
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties(props)
+    // Do not try to expand service files, they may contain a dollar sign to mark inner classes
+    filesMatching('plugin.yml') {
+        expand(props)
+    }
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+shadowJar {
+    archiveFileName = "SanctionStaff.jar"
+
+	def pluginDir = System.getProperty('plugins.dir')
+	if (pluginDir != null) {
+	    destinationDir = file(pluginDir)
+	}
+}

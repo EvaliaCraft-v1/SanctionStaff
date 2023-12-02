@@ -1,0 +1,69 @@
+messages:
+  reloaded: "&aPlugin Sanction reload"
+  help: "&e/ss <player>"
+  not_found: "&c%arg% n'est pas un joueur valide."
+  no_touch: "&cCe joueur ne peux recevoir de sanction de votre part."
+  select: "&aLe joueur selectioné est %name%."
+  applied: "&cSanction&7: &c&6%name% !"
+
+permissions:
+  admin: sanction.command.manager"
+
+back-item:
+  material: OAK_DOOR
+  name: "&cRetour"
+
+main:
+  inv_name: "Sanction de %name%"
+  items:
+    sanctions:
+      material: ENCHANTED_BOOK
+      name: "&aSanction"
+      lore:
+      - "&7Sanctionner le joueur"
+    dupeip:
+      material: NAME_TAG
+      name: "&aSanction"
+      lore:
+      - "&7Sanctionner le joueur"
+    history:
+      material: BOOK
+      name: "&aHistorique"
+      lore:
+      - "&7Voir l'historique du joueur"
+    teleport:
+      material: COMPASS
+      name: "&aTéléportation"
+      lore:
+      - "&7Se téléporter au joueur"
+      - ""
+      - "&cAttention: Soyez bien en vanish AVANT de vous TP"
+    find:
+      material: EYE_OF_ENDER
+      name: "&aFind"
+      lore:
+      - "&7Find le joueur"
+category:
+  inv_name: "Menu | Joueur %name%"
+
+
+
+kick:
+  items:
+    main:
+      material: STICK
+mute:
+  items:
+    main:
+      material: PAPER
+ban:
+  items:
+    main:
+      material: BOOK
+  actions:
+    1:
+      slot: 10
+      name: "Ban test"
+      lore: "Incroyable ban"
+      command: "ban %name% incrr"
+      permission: "sanction.ban"

@@ -1,0 +1,13 @@
+name: SanctionStaff
+authors: [Elikill58]
+version: 3.0
+api-version: 1.13
+main: com.elikill58.sanction.spigot.SanctionSpigot
+commands:
+  sanction:
+    aliases: [ss]
+    description: Sert a donnee une sanction a un joueur
+    permmission: sanction.use
+  sanctionrl:
+    description: Sert a reload le plugin sanction
+    permmission: sanction.rl
