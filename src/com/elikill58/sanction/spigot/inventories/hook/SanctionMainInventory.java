@@ -31,13 +31,13 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 		for (int i = 0; i < inv.getSize(); i++)
 			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
 		
-		inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"))).tryOwner(cible).build());
+		inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%name%", cible.getName())).tryOwner(cible).build());
 		
-		inv.setItem(12, Items.getItem(config.getConfigurationSection("main.items.sanctions")));
-		inv.setItem(13, Items.getItem(config.getConfigurationSection("main.items.dupeip")));
-		inv.setItem(14, Items.getItem(config.getConfigurationSection("main.items.history")));
-		inv.setItem(15, Items.getItem(config.getConfigurationSection("main.items.teleport")));
-		inv.setItem(16, Items.getItem(config.getConfigurationSection("main.items.bell")));
+		inv.setItem(12, Items.getItem(config.getConfigurationSection("main.items.sanctions"), "%name%", cible.getName()));
+		inv.setItem(13, Items.getItem(config.getConfigurationSection("main.items.dupeip"), "%name%", cible.getName()));
+		inv.setItem(14, Items.getItem(config.getConfigurationSection("main.items.history"), "%name%", cible.getName()));
+		inv.setItem(15, Items.getItem(config.getConfigurationSection("main.items.teleport"), "%name%", cible.getName()));
+		inv.setItem(16, Items.getItem(config.getConfigurationSection("main.items.bell"), "%name%", cible.getName()));
 
 		openInventorySync(p, inv);
 	}
@@ -45,9 +45,10 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 	@Override
 	public void manageInventory(InventoryClickEvent e, Material m, Player p, SanctionMainHolder nh) {
 		int slot = e.getSlot();
-		if(slot == 10) 
+		if(slot == 10) {
+			p.closeInventory();
 			SpigotToBungee.sendPlayerCmdToBungee(p, "find");
-		else if (slot == 12)
+		} else if (slot == 12)
 			InventoryManager.openInventory(p, "SANCTION_CATEGORY", nh.getCible());
 		else if (slot == 13) {
 			p.closeInventory();

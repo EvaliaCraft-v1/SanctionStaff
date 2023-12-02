@@ -43,19 +43,9 @@ public final class UniversalUtils {
 		return list;
 	}
 
-	public static <T> String toString(List<T> list) {
-		String s = "";
-		for (T t : list) {
-			s += t.toString();
-		}
-		return s;
-	}
-
-	public static <T> String toStringWithSplitter(List<T> list, String sp) {
-		String s = "";
-		for (T t : list) {
-			s += t.toString() + sp;
-		}
-		return s;
+	public static String replacePlaceholder(String message, Object... placeholders) {
+		for (int index = 0; index <= placeholders.length - 1; index += 2)
+			message = message.replace(placeholders[index].toString(), placeholders[index + 1].toString());
+		return message;
 	}
 }

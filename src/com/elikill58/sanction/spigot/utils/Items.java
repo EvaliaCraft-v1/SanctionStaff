@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 import com.elikill58.sanction.spigot.SanctionSpigot;
+import com.elikill58.sanction.universal.UniversalUtils;
 
 public class Items {
 	
@@ -19,7 +20,7 @@ public class Items {
 	}
 
 	@SuppressWarnings("deprecation")
-	public static ItemStack getItem(ConfigurationSection sec) {
+	public static ItemStack getItem(ConfigurationSection sec, Object... placeholder) {
 		if (sec == null)
 			return null;
 		Material beginItem = Material.getMaterial(sec.getString("material"));
@@ -27,7 +28,7 @@ public class Items {
 			return null;
 		ItemStackBuilder builder = new ItemStackBuilder(beginItem);
 		if (sec.contains("name"))
-			builder.displayName(sec.getString("name"));
+			builder.displayName(UniversalUtils.replacePlaceholder(sec.getString("name"), placeholder));
 		if (sec.contains("lore")) {
 			List<String> lore = new ArrayList<>();
 			if (sec.get("lore") instanceof List)
