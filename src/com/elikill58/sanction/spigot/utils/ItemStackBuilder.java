@@ -9,12 +9,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import com.elikill58.sanction.spigot.SanctionSpigot;
 import com.elikill58.sanction.universal.ChatUtils;
@@ -158,6 +160,13 @@ public class ItemStackBuilder implements Listener {
      */
     public ItemStackBuilder unbreakable() {
         return this.unbreakable(true);
+    }
+    
+    public ItemStackBuilder tryOwner(OfflinePlayer cible) {
+    	if(this.itemMeta instanceof SkullMeta sm && !sm.hasOwner()) {
+    		sm.setOwningPlayer(cible);
+    	}
+    	return this;
     }
 
     /**
