@@ -14,7 +14,6 @@ import com.elikill58.sanction.spigot.inventories.InventoryManager;
 import com.elikill58.sanction.spigot.inventories.holder.SanctionMainHolder;
 import com.elikill58.sanction.spigot.utils.ItemStackBuilder;
 import com.elikill58.sanction.spigot.utils.Items;
-import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 
 public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder> {
 
