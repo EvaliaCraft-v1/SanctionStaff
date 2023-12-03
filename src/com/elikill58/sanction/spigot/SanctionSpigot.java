@@ -14,6 +14,7 @@ import com.elikill58.sanction.spigot.commands.SanctionCmd;
 import com.elikill58.sanction.spigot.handler.Action;
 import com.elikill58.sanction.spigot.handler.ActionType;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
+import com.elikill58.sanction.spigot.inventories.hook.SanctionConfirmInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionMainInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerCategoryInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
@@ -49,6 +50,7 @@ public class SanctionSpigot extends JavaPlugin {
 		InventoryManager.registerInventory("SANCTION_MAIN", new SanctionMainInventory());
 		InventoryManager.registerInventory("SANCTION_CATEGORY", new SanctionPlayerCategoryInventory());
 		InventoryManager.registerInventory("SANCTION_PLAYER", new SanctionPlayerInventory());
+		InventoryManager.registerInventory("SANCTION_CONFIRM", new SanctionConfirmInventory());
 
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "sanction:sanctioncmd");
 	}

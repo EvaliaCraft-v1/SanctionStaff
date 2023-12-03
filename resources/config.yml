@@ -11,6 +11,8 @@ messages:
     inv_name: "Menu | %type% %name%"
   main:
     inv_name: "Sanction de %name%"
+  main:
+    inv_name: "Confirmer la sanction de %name%"
 
 permissions:
   admin: sanction.command.manager"
@@ -65,6 +67,18 @@ main:
       - "&7Lancement de mycmd"
       command: "mycmd"
       proxy: false
+confirm:
+  items:
+    confirm:
+      material: LIME_WOOL
+      name: "&aConfirmer"
+      lore:
+      - "&7Cliquez pour confirmer"
+    cancel:
+      material: RED_WOOL
+      name: "&aAnnuler"
+      lore:
+      - "&7Cliquez pour annuler"
 
 kick:
   items:
