@@ -3,8 +3,8 @@ package com.elikill58.sanction.bungee;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
-import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -13,7 +13,7 @@ public class BungeeListener implements Listener {
 
 	@EventHandler
 	public void onMessageReceived(PluginMessageEvent e) {
-		if (!e.getTag().equalsIgnoreCase("sanction:sanctioncmd"))
+		if (!e.getTag().equalsIgnoreCase("sanction:sanctioncmd") || !(e.getReceiver() instanceof ProxiedPlayer p))
 			return;
 		try (ByteArrayInputStream ba = new ByteArrayInputStream(e.getData()); DataInputStream in = new DataInputStream(ba)) {
 			String channel = in.readUTF();
@@ -23,9 +23,16 @@ public class BungeeListener implements Listener {
 				ProxyServer.getInstance().getPluginManager().dispatchCommand(ProxyServer.getInstance().getConsole(), input);
 			} else if (channel.equals("ExecuteCommandAsPlayer")) {
 				String input = in.readUTF();
-				CommandSender sender = (CommandSender) e.getReceiver();
-				SanctionBungee.getInstance().getLogger().info("Run command '" + input + "' as " + sender.getName());
-				ProxyServer.getInstance().getPluginManager().dispatchCommand(sender, input);
+				SanctionBungee.getInstance().getLogger().info("Run command '" + input + "' as " + p.getName());
+				ProxyServer.getInstance().getPluginManager().dispatchCommand(p, input);
+			} else if (channel.equals("AlertXray")) {
+				String name = in.readUTF();
+				String perm = BungeeConfig.getConfig().getString("permissions.see_alert_xray");
+				for(ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
+					if(all.hasPermission(perm)) {
+						BMsg.sendMsg(all, "alert_xray", "%name%", p.getName(), "%minerai%", name, "%server%", p.getServer().getInfo().getName());
+					}
+				}
 			}
 		} catch (Exception exc) {
 			exc.printStackTrace();

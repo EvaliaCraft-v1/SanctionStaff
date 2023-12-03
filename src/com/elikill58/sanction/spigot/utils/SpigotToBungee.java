@@ -21,4 +21,11 @@ public class SpigotToBungee {
 		out.writeUTF(cmd);
 		p.sendPluginMessage(SanctionSpigot.getInstance(), "sanction:sanctioncmd", out.toByteArray());
 	}
+
+	public static void sendAlertXrayToBungee(Player p, String name) {
+		ByteArrayDataOutput out = ByteStreams.newDataOutput();
+		out.writeUTF("AlertXray");
+		out.writeUTF(name);
+		p.sendPluginMessage(SanctionSpigot.getInstance(), "sanction:sanctioncmd", out.toByteArray());
+	}
 }

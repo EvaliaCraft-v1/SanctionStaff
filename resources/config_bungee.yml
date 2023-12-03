@@ -10,8 +10,10 @@ messages:
     footer:
     - ""
     - "&f&m-----------------------"
+  alert_xray: "&c(&6%server%&c) -> &6%name% &ca miné 1 &6%minerai%"
 
 
 permissions:
   chatstaff: "sanction.cs"
   staffs: "sanction.staffs"
+  see_alert_xray: "sanction.xray"
