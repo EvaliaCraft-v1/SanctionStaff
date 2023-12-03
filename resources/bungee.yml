@@ -1,4 +1,4 @@
-name: Sanction
+name: SanctionStaff
 author: Elikill58
-version: 2.0
+version: 3.0
 main: com.elikill58.sanction.bungee.SanctionBungee

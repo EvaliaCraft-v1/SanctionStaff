@@ -8,15 +8,15 @@ public class Action {
 	
 	private final String name, lore, command, perm;
 	private final int slot;
-	private final ItemStack item;
+	private final ActionType type;
 	private final boolean proxy;
 
-	public Action(String name, String lore, String command, String perm, ItemStack item, int slot, boolean proxy) {
+	public Action(String name, String lore, String command, String perm, int slot, boolean proxy, ActionType type) {
 		this.name = name;
 		this.lore = lore;
 		this.command = command;
 		this.perm = perm;
-		this.item = item;
+		this.type = type;
 		this.slot = slot;
 		this.proxy = proxy;
 	}
@@ -36,6 +36,10 @@ public class Action {
 	public String getPermission() {
 		return perm;
 	}
+	
+	public ActionType getType() {
+		return type;
+	}
 
 	public int getSlot() {
 		return slot;
@@ -46,6 +50,6 @@ public class Action {
 	}
 	
 	public ItemStack toItem() {
-		return new ItemStackBuilder(item.clone()).displayName(name).lore(lore).build();
+		return new ItemStackBuilder(type.getItem()).displayName(name).lore(lore).build();
 	}
 }

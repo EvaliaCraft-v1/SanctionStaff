@@ -16,6 +16,7 @@ public enum ActionType {
 	private final String name;
 	private final int slot;
 	private final List<Action> actions = new ArrayList<>();
+	private ItemStack item;
 	
 	private ActionType(String name, int slot) {
 		this.name = name;
@@ -34,14 +35,18 @@ public enum ActionType {
 		return slot;
 	}
 	
+	public ItemStack getItem() {
+		return item.clone();
+	}
+	
 	public void loadActions(SanctionSpigot pl) {
 		actions.clear();
+		item = Items.getItem(pl.getConfig().getConfigurationSection(name().toLowerCase() + ".items.main"));
 		ConfigurationSection config = pl.getConfig().getConfigurationSection(name().toLowerCase() + ".actions");
 		if(config == null)
 			return;
-		ItemStack item = Items.getItem(pl.getConfig().getConfigurationSection(name().toLowerCase() + ".items.main"));
 		config.getKeys(false).stream().map(config::getConfigurationSection).forEach(a -> {
-			actions.add(new Action(a.getString("name"), a.isList("lore") ? String.join("\n", a.getStringList("lore")) : a.getString("lore"), a.getString("command"), a.getString("permission"), item, a.getInt("slot"), a.getBoolean("proxy", false)));
+			actions.add(new Action(a.getString("name"), a.isList("lore") ? String.join("\n", a.getStringList("lore")) : a.getString("lore"), a.getString("command"), a.getString("permission"), a.getInt("slot"), a.getBoolean("proxy", false), this));
 		});
 	}
 }

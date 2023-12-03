@@ -19,12 +19,13 @@ public class StaffsCommand extends Command {
 		super("staffs", PERM);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		BMsg.sendMsg(sender, "staffs.header");
-		for(ServerInfo srv : ProxyServer.getInstance().getServersCopy().values()) {
+		for(ServerInfo srv : ProxyServer.getInstance().getServers().values()) {
 			StringJoiner sj = new StringJoiner(", ");
-			for(ProxiedPlayer pp : ProxyServer.getInstance().getPlayers())
+			for(ProxiedPlayer pp : srv.getPlayers())
 				if(pp.hasPermission(PERM))
 					sj.add(pp.getName());
 			if(sj.length() > 0)
