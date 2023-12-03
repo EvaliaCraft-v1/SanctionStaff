@@ -2,6 +2,16 @@ messages:
   cs:
     help: "/cs <message>"
     message: "&c(&6%server%&c) -> %name% : &f%message%"
+  staffs:
+    header:
+    - "&f&m-----------------------"
+    - "  &7Staff en ligne:"
+    line: "&c(&6%server%&c) -> %names%"
+    footer:
+    - ""
+    - "&f&m-----------------------"
+
 
 permissions:
   chatstaff: "sanction.cs"
+  staffs: "sanction.staffs"
