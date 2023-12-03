@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.elikill58.sanction.spigot.commands.SanctionCmd;
@@ -18,6 +19,7 @@ import com.elikill58.sanction.spigot.inventories.hook.SanctionConfirmInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionMainInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerCategoryInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
+import com.elikill58.sanction.spigot.listeners.BlockListener;
 import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 
 public class SanctionSpigot extends JavaPlugin {
@@ -45,7 +47,9 @@ public class SanctionSpigot extends JavaPlugin {
 			}
 		});
 
-		getServer().getPluginManager().registerEvents(new InventoryManager(), this);
+		PluginManager pm = getServer().getPluginManager();
+		pm.registerEvents(new InventoryManager(), this);
+		pm.registerEvents(new BlockListener(), this);
 
 		InventoryManager.registerInventory("SANCTION_MAIN", new SanctionMainInventory());
 		InventoryManager.registerInventory("SANCTION_CATEGORY", new SanctionPlayerCategoryInventory());

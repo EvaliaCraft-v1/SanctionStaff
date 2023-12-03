@@ -1,5 +1,6 @@
 package com.elikill58.sanction.spigot.listeners;
 
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,6 +15,8 @@ public class BlockListener implements Listener {
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e) {
 		Player p = e.getPlayer();
+		if(p.getGameMode().equals(GameMode.CREATIVE))
+			return;
 		Material type = e.getBlock().getType();
 		for(String blocks : SanctionSpigot.getInstance().getConfig().getStringList("block_alert")) {
 			if(type.name().contains(blocks.toUpperCase())) {
