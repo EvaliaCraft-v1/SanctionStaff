@@ -21,6 +21,7 @@ import com.elikill58.sanction.spigot.inventories.hook.SanctionMainInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerCategoryInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
 import com.elikill58.sanction.spigot.listeners.BlockListener;
+import com.elikill58.sanction.spigot.listeners.StaffModeListener;
 import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 
 public class SanctionSpigot extends JavaPlugin {
@@ -52,6 +53,7 @@ public class SanctionSpigot extends JavaPlugin {
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new InventoryManager(), this);
 		pm.registerEvents(new BlockListener(), this);
+		pm.registerEvents(new StaffModeListener(), this);
 
 		InventoryManager.registerInventory("SANCTION_MAIN", new SanctionMainInventory());
 		InventoryManager.registerInventory("SANCTION_CATEGORY", new SanctionPlayerCategoryInventory());

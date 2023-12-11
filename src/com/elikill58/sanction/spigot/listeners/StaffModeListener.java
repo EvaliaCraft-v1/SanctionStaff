@@ -7,11 +7,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 
 import com.elikill58.sanction.spigot.staffmode.StaffFeatures;
 import com.elikill58.sanction.spigot.staffmode.StaffMode;
+import com.elikill58.sanction.spigot.staffmode.StaffModeInventory;
 
 public class StaffModeListener implements Listener {
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) {
+		if(StaffModeInventory.couldBeStaffMode(e.getPlayer().getUniqueId())) {
+			StaffMode.getStaffs().add(e.getPlayer());
+		}
+	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPickupItem(EntityPickupItemEvent e) {

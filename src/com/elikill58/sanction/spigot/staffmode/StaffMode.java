@@ -24,7 +24,7 @@ public class StaffMode {
 		Msg.sendMsg(p, "staffmode.enabled");
 		STAFFS.add(p);
 		PlayerInventory inv = p.getInventory();
-		// TODO save inventory
+		StaffModeInventory.save(p.getUniqueId(), inv);
 		inv.setArmorContents(null);
 		inv.clear();
 		for(StaffFeatures sf : StaffFeatures.values()) {
@@ -35,5 +35,6 @@ public class StaffMode {
 	public static void stopStaffMode(Player p) {
 		Msg.sendMsg(p, "staffmode.disabled");
 		STAFFS.remove(p);
+		StaffModeInventory.restore(p.getUniqueId(), p.getInventory());
 	}
 }
