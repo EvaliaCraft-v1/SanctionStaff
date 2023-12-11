@@ -14,11 +14,17 @@ messages:
     inv_name: "Menu | %type% %name%"
   main:
     inv_name: "Sanction de %name%"
-  main:
+  confirm:
     inv_name: "Confirmer la sanction de %name%"
-
+  teleport:
+    no_one: "Personne à qui se téléporter."
+    go: "&aTéléportation à &6%name%"
+  staffmode:
+    enabled: "&aActivation du mode staff"
+    disabled: "&cDésactivation du mode staff"
 permissions:
-  admin: sanction.command.manager"
+  admin: sanction.command.manager
+  no_tp: sanction.use
 
 back-item:
   material: OAK_DOOR
@@ -132,3 +138,15 @@ ban:
       command: "ban %name% incrr"
       proxy: false
       permission: "sanction.ban2"
+
+staffmode:
+  items:
+    inventory:
+      material: PAPER
+      name: "Voir l'inventaire"
+    sanction:
+      material: ENCHANTED_BOOK
+      name: "Sanctionner"
+    teleport_random:
+      material: COMPASS
+      name: "Téléportation aléatoire"

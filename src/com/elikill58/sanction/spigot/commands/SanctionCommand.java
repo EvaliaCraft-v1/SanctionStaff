@@ -10,7 +10,7 @@ import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.SanctionSpigot;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
 
-public class SanctionCmd implements CommandExecutor {
+public class SanctionCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {

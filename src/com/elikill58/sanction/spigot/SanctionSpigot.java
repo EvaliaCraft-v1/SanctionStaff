@@ -11,7 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.elikill58.sanction.spigot.commands.SanctionCmd;
+import com.elikill58.sanction.spigot.commands.SanctionCommand;
+import com.elikill58.sanction.spigot.commands.StaffCommand;
 import com.elikill58.sanction.spigot.handler.Action;
 import com.elikill58.sanction.spigot.handler.ActionType;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
@@ -37,7 +38,8 @@ public class SanctionSpigot extends JavaPlugin {
 		instance = this;
 		saveDefaultConfig();
 		loadActions();
-		getCommand("sanction").setExecutor(new SanctionCmd());
+		getCommand("staff").setExecutor(new StaffCommand());
+		getCommand("sanction").setExecutor(new SanctionCommand());
 		getCommand("sanctionrl").setExecutor(new CommandExecutor() {
 			public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 				reloadConfig();

@@ -8,6 +8,8 @@ commands:
     aliases: [ss]
     description: Sert a donnee une sanction a un joueur
     permmission: sanction.use
+  staff:
+    permmission: sanction.use
   sanctionrl:
     description: Sert a reload le plugin sanction
     permmission: sanction.rl
