@@ -3,7 +3,9 @@ package com.elikill58.sanction.spigot.staffmode;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import com.elikill58.sanction.spigot.Msg;
@@ -27,6 +29,8 @@ public class StaffMode {
 		StaffModeInventory.save(p.getUniqueId(), inv);
 		inv.setArmorContents(null);
 		inv.clear();
+		for(int i = 0; i < 9; i++)
+			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
 		for(StaffFeatures sf : StaffFeatures.values()) {
 			inv.setItem(sf.getSlot(), sf.getItem());
 		}
