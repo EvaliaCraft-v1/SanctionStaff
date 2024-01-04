@@ -12,6 +12,8 @@ commands:
     permmission: sanction.use
   staff:
     permmission: sanction.use
+  spec:
+    permmission: sanction.spec
   sanctionrl:
     description: Sert a reload le plugin sanction
     permmission: sanction.rl

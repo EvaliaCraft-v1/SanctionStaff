@@ -22,6 +22,9 @@ messages:
   staffmode:
     enabled: "&aActivation du mode staff"
     disabled: "&cDésactivation du mode staff"
+  spec:
+    survival: "&aVous êtes désormais en &esurvie"
+    spec: "&aVous êtes désormais en &dspéctateur"
 permissions:
   admin: sanction.command.manager
   no_tp: sanction.use

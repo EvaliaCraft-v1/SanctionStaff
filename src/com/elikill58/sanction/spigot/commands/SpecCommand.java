@@ -6,6 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.elikill58.sanction.spigot.Msg;
+
 public class SpecCommand implements CommandExecutor {
 
 	@Override
@@ -14,10 +16,10 @@ public class SpecCommand implements CommandExecutor {
 			return false;
 		if(p.getGameMode().equals(GameMode.SPECTATOR)) {
 			p.setGameMode(GameMode.SURVIVAL);
-			
+			Msg.sendMsg(p, "spec.survival");
 		} else {
 			p.setGameMode(GameMode.SPECTATOR);
-			
+			Msg.sendMsg(p, "spec.spec");
 		}
 		return false;
 	}
