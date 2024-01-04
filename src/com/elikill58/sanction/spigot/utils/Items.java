@@ -12,6 +12,8 @@ import com.elikill58.sanction.universal.UniversalUtils;
 
 public class Items {
 	
+	public static final ItemStack EMPTY = new ItemStackBuilder(Material.BROWN_STAINED_GLASS_PANE).displayName("").build();
+	
 	public static ItemStack getBackItem() {
 		return getItem(SanctionSpigot.getInstance().getConfig().getConfigurationSection("back-item"));
 	}

@@ -5,7 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.SanctionSpigot;
@@ -28,7 +27,7 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 
 		for (int i = 0; i < inv.getSize(); i++)
-			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
+			inv.setItem(i, Items.EMPTY);
 		
 		inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%name%", cible.getName())).tryOwner(cible).build());
 		

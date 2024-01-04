@@ -4,7 +4,6 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.handler.Action;
@@ -28,7 +27,7 @@ public class SanctionPlayerInventory extends AbstractInventory<SanctionPlayerHol
 		Inventory inv = createInventory(new SanctionPlayerHolder(cible, type), 27, Msg.getMsg("sanction_player.inv_name", "%name%", cible.getName(), "%type%", type.getName()));
 		
 		for(int i = 0; i < inv.getSize(); i++)
-			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
+			inv.setItem(i, Items.EMPTY);
 		
 		for(Action a : type.getActions()) {
 			if(a.getPermission() == null || p.hasPermission(a.getPermission()))

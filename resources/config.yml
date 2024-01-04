@@ -118,6 +118,7 @@ mute:
       command: "ban %name% incrr --sender-uuid=%executor_uuid% --sender=%executor%"
       permission: "sanction.mute"
 ban:
+  permission: "sancton.use.bans"
   items:
     main:
       material: BOOK

@@ -5,7 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.SanctionSpigot;
@@ -30,7 +29,7 @@ public class SanctionConfirmInventory extends AbstractInventory<SanctionConfirmH
 		Inventory inv = createInventory(new SanctionConfirmHolder(cible, action), 9, Msg.getMsg("confirm.inv_name", "%name%", cible.getName()));
 
 		for (int i = 0; i < inv.getSize(); i++)
-			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
+			inv.setItem(i, Items.EMPTY);
 
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 		inv.setItem(3, Items.getItem(config.getConfigurationSection("confirm.items.confirm")));
