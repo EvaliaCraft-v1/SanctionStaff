@@ -3,6 +3,8 @@ authors: [Elikill58]
 version: 3.0
 api-version: 1.13
 main: com.elikill58.sanction.spigot.SanctionSpigot
+softdepend:
+  - InvSeePlusPlus
 commands:
   sanction:
     aliases: [ss]

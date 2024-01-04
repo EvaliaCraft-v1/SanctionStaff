@@ -13,12 +13,11 @@ import org.bukkit.inventory.ItemStack;
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.SanctionSpigot;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
-import com.elikill58.sanction.spigot.staffmode.invsee.InvSeeManager;
 import com.elikill58.sanction.spigot.utils.Items;
 
 public enum StaffFeatures {
 
-	INVENTORY(3, null, (p, cible) -> InvSeeManager.open(p, cible)),
+	INVENTORY(3, null, (p, cible) -> InvSeePlusPlusHook.open(p, cible)),// InvSeeManager.open(p, cible)),
 	SANCTION(4, null, (p, cible) -> InventoryManager.openInventory(p, "SANCTION_MAIN", cible)),
 	TELEPORT_RANDOM(5, (p) -> {
 		List<Player> all = Bukkit.getOnlinePlayers().stream().filter(ap -> !ap.hasPermission(SanctionSpigot.getInstance().getConfig().getString("permissions.no_tp", "sanction.use"))).collect(Collectors.toList());
