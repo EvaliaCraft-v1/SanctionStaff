@@ -82,8 +82,8 @@ public class InvSeePlusPlusHook {
 		});
 	}
 
-	public static void open(Player p, Player cible) {
-		invseeApi.spectateInventory(p, cible.getName(), options).whenComplete((msi, e) -> {
+	public static void open(Player p, String playername) {
+		invseeApi.spectateInventory(p, playername, options).whenComplete((msi, e) -> {
 			if(e == null) {
 				//msi.getOpenInventory().setItem(1, new ItemStack(Material.PLAYER_HEAD));
 				msi.getOpenInventory().getTopInventory().setItem(1, new ItemStack(Material.PLAYER_HEAD));
