@@ -16,6 +16,10 @@ messages:
     inv_name: "Sanction de %name%"
   confirm:
     inv_name: "Confirmer la sanction de %name%"
+  report:
+    inv_name: "Signalement de %name%"
+    help: "/report <pseudo> : Ouvre l'interface de signalement d'un joueur"
+    alert: "&d%name% &ea signalé &c%cible% &epour &7%reason%"
   teleport:
     no_one: "Personne à qui se téléporter."
     go: "&aTéléportation à &6%name%"
@@ -142,6 +146,18 @@ ban:
       command: "ban %name% incrr"
       proxy: false
       permission: "sanction.ban2"
+report:
+  actions:
+    1:
+      slot: 10
+      name: "Spam"
+      lore: "&7Spam dans le chat"
+      reason: "Spam"
+    2:
+      slot: 11
+      name: "Cheat"
+      lore: "&7Cheat en jeu"
+      reason: "Cheat"
 
 staffmode:
   items:

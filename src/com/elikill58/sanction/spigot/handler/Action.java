@@ -6,16 +6,17 @@ import com.elikill58.sanction.spigot.utils.ItemStackBuilder;
 
 public class Action {
 	
-	private final String name, lore, command, perm;
+	private final String name, lore, command, perm, reason;
 	private final int slot;
 	private final ActionType type;
 	private final boolean proxy;
 
-	public Action(String name, String lore, String command, String perm, int slot, boolean proxy, ActionType type) {
+	public Action(String name, String lore, String command, String perm, String reason, int slot, boolean proxy, ActionType type) {
 		this.name = name;
 		this.lore = lore;
 		this.command = command;
 		this.perm = perm;
+		this.reason = reason;
 		this.type = type;
 		this.slot = slot;
 		this.proxy = proxy;
@@ -35,6 +36,10 @@ public class Action {
 	
 	public String getPermission() {
 		return perm;
+	}
+	
+	public String getReason() {
+		return reason;
 	}
 	
 	public ActionType getType() {

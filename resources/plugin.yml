@@ -17,3 +17,5 @@ commands:
   sanctionrl:
     description: Sert a reload le plugin sanction
     permmission: sanction.rl
+  report:
+    description: Signale un joueur

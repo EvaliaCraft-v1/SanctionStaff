@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -31,6 +32,14 @@ public class BungeeListener implements Listener {
 				for(ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
 					if(all.hasPermission(perm)) {
 						BMsg.sendMsg(all, "alert_xray", "%name%", p.getName(), "%minerai%", name, "%server%", p.getServer().getInfo().getName());
+					}
+				}
+			} else if (channel.equals("StaffAlert")) {
+				String msg = in.readUTF();
+				String perm = BungeeConfig.getConfig().getString("permissions.staff");
+				for(ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
+					if(all.hasPermission(perm)) {
+						all.sendMessage(new TextComponent(msg));
 					}
 				}
 			}

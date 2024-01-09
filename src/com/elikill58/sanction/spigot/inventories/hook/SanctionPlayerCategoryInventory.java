@@ -28,6 +28,8 @@ public class SanctionPlayerCategoryInventory extends AbstractInventory<SanctionP
 		for (int i = 0; i < inv.getSize(); i++)
 			inv.setItem(i, Items.EMPTY);
 		for (ActionType type : ActionType.values()) {
+			if(type.getSlot() < 0)
+				return;
 			String perm = config.getString(type.name().toLowerCase() + ".permission");
 			if(perm == null || p.hasPermission(perm))
 				inv.setItem(type.getSlot(), Items.getItem(config.getConfigurationSection(type.name().toLowerCase() + ".items.main")));
@@ -44,8 +46,11 @@ public class SanctionPlayerCategoryInventory extends AbstractInventory<SanctionP
 		}
 		if(e.getCurrentItem().isSimilar(Items.EMPTY))
 			return;
-		for (ActionType type : ActionType.values())
+		for (ActionType type : ActionType.values()) {
+			if(type.getSlot() < 0)
+				return;
 			if (type.getSlot() == e.getSlot())
 				InventoryManager.openInventory(p, "SANCTION_PLAYER", nh.getCible(), type);
+		}
 	}
 }

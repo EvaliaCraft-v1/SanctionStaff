@@ -11,7 +11,10 @@ import com.elikill58.sanction.spigot.utils.Items;
 
 public enum ActionType {
 
-	BAN("Ban", 11), KICK("Kick", 13), MUTE("Mute", 15);
+	BAN("Ban", 11),
+	KICK("Kick", 13),
+	MUTE("Mute", 15),
+	REPORT("Report", -1);
 
 	private final String name;
 	private final int slot;
@@ -46,7 +49,7 @@ public enum ActionType {
 		if(config == null)
 			return;
 		config.getKeys(false).stream().map(config::getConfigurationSection).forEach(a -> {
-			actions.add(new Action(a.getString("name"), a.isList("lore") ? String.join("\n", a.getStringList("lore")) : a.getString("lore"), a.getString("command"), a.getString("permission"), a.getInt("slot"), a.getBoolean("proxy", false), this));
+			actions.add(new Action(a.getString("name"), a.isList("lore") ? String.join("\n", a.getStringList("lore")) : a.getString("lore"), a.getString("command"), a.getString("permission"), a.getString("reason"), a.getInt("slot"), a.getBoolean("proxy", false), this));
 		});
 	}
 }
