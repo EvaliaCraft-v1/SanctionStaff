@@ -32,9 +32,13 @@ import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 public class SanctionSpigot extends JavaPlugin {
 
 	private static SanctionSpigot instance;
+	private static boolean hasDiscordSrv;
 
 	public static SanctionSpigot getInstance() {
 		return instance;
+	}
+	public static boolean hasDiscordSrv() {
+		return hasDiscordSrv;
 	}
 
 	public static ArrayList<Action> actions = new ArrayList<>();
@@ -66,6 +70,7 @@ public class SanctionSpigot extends JavaPlugin {
 		if(pm.isPluginEnabled("InvSeePlusPlus")) {
 			InvSeePlusPlusHook.load();
 		}
+		hasDiscordSrv = pm.isPluginEnabled("DiscordSRV");
 
 		InventoryManager.registerInventory("SANCTION_MAIN", new SanctionMainInventory());
 		InventoryManager.registerInventory("SANCTION_CATEGORY", new SanctionPlayerCategoryInventory());

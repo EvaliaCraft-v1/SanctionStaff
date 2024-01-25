@@ -33,6 +33,8 @@ public class InvSeePlusPlusHook {
 			
 			@Override
 			public Integer getIndex(PlayerInventorySlot slot) {
+				if(slot == null)
+					return null;
 				if(slot.name().contains("EMPTY")) {
 					switch(slot.name()) {
 					case "EMPTY_00":

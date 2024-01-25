@@ -19,6 +19,10 @@ repositories {
     	url = 'https://oss.sonatype.org/content/repositories/snapshots'
     }
     maven {
+    	url = "https://nexus.scarsz.me/content/groups/public/"
+    	name = "discordsrv"
+    }
+    maven {
         name = 'paper'
         url = 'https://repo.papermc.io/repository/maven-public/'
     }
@@ -33,6 +37,7 @@ dependencies {
     compileOnly 'org.spigotmc:spigot:1.20.2-R0.1-SNAPSHOT'
     compileOnly 'io.github.waterfallmc:waterfall-api:1.20-R0.1-SNAPSHOT'
     compileOnly "com.jannyboy11:InvSeePlusPlus:0.24.9"
+    compileOnly 'com.discordsrv:discordsrv:1.27.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_17

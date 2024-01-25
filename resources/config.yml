@@ -7,6 +7,7 @@ messages:
   not_found: "&c%arg% n'est pas un joueur valide."
   no_touch: "&cCe joueur ne peux recevoir de sanction de votre part."
   select: "&aSanction&7: %name%."
+  reported: "&a%name% &7a bien été signalé."
   applied: "&6Sanction appliqué à &c%name% !"
   category:
     inv_name: "Menu | Joueur %name%"
@@ -15,7 +16,7 @@ messages:
   main:
     inv_name: "Sanction de %name%"
   confirm:
-    inv_name: "Confirmer la sanction de %name%"
+    inv_name: "Confirmer l'action: %name%"
   report:
     inv_name: "Signalement de %name%"
     help: "/report <pseudo> : Ouvre l'interface de signalement d'un joueur"

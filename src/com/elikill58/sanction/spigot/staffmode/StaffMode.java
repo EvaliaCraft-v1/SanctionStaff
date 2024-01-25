@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import com.elikill58.sanction.spigot.Msg;
+import com.elikill58.sanction.spigot.utils.Items;
 
 public class StaffMode {
 
@@ -30,7 +31,7 @@ public class StaffMode {
 		inv.setArmorContents(null);
 		inv.clear();
 		for(int i = 0; i < 9; i++)
-			inv.setItem(i, new ItemStack(Material.BROWN_STAINED_GLASS_PANE));
+			inv.setItem(i, Items.EMPTY);
 		for(StaffFeatures sf : StaffFeatures.values()) {
 			inv.setItem(sf.getSlot(), sf.getItem());
 		}

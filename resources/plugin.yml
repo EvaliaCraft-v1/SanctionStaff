@@ -5,6 +5,7 @@ api-version: 1.13
 main: com.elikill58.sanction.spigot.SanctionSpigot
 softdepend:
   - InvSeePlusPlus
+  - DiscordSRV
 commands:
   sanction:
     aliases: [ss]

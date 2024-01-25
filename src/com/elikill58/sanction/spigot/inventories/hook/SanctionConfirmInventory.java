@@ -10,6 +10,7 @@ import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.SanctionSpigot;
 import com.elikill58.sanction.spigot.handler.Action;
 import com.elikill58.sanction.spigot.handler.ActionType;
+import com.elikill58.sanction.spigot.hook.DiscordSRVHook;
 import com.elikill58.sanction.spigot.inventories.AbstractInventory;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
 import com.elikill58.sanction.spigot.inventories.holder.SanctionConfirmHolder;
@@ -49,8 +50,11 @@ public class SanctionConfirmInventory extends AbstractInventory<SanctionConfirmH
 			} else if (e.getSlot() == 3) {
 				Player cible = nh.getCible();
 				Action ac = nh.getAction();
+				if(SanctionSpigot.hasDiscordSrv())
+					DiscordSRVHook.sendReportMessage(p, cible, ac.getReason());
 				SpigotToBungee.sendAlertStaff(p, Msg.getMsg("report.alert", "%name%", p.getName(), "%cible%", cible.getName(), "%reason%", ac.getReason()));
-				
+				Msg.sendMsg(p, "reported", "%name%", cible.getName());
+				p.closeInventory();
 			}
 		} else {
 			if (e.getSlot() == 5) {
