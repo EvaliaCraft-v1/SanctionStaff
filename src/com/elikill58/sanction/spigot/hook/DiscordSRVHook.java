@@ -21,7 +21,6 @@ public class DiscordSRVHook {
 		MessageFormat messageFormat = DiscordSRV.getPlugin().getMessageFromConfiguration("ReportMessage");
 		if (messageFormat == null)
 			return;
-
 		String avatarUrl = DiscordSRV.getAvatarUrl(player);
 		String botAvatarUrl = jda.getSelfUser().getEffectiveAvatarUrl();
 		String botName = DiscordSRV.getPlugin().getMainGuild() != null ? DiscordSRV.getPlugin().getMainGuild().getSelfMember().getEffectiveName() : jda.getSelfUser().getName();

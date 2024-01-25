@@ -3,9 +3,7 @@ package com.elikill58.sanction.spigot.staffmode;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import com.elikill58.sanction.spigot.Msg;
