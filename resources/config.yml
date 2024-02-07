@@ -148,6 +148,12 @@ ban:
       proxy: false
       permission: "sanction.ban2"
 report:
+  items:
+    main:
+      material: BOOK
+      name: "Ban"
+      lore:
+      - "&7Options pour ban le joueur"
   actions:
     1:
       slot: 10

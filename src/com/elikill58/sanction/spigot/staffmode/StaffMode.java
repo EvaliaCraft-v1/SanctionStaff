@@ -24,6 +24,7 @@ public class StaffMode {
 	public static void startStaffMode(Player p) {
 		Msg.sendMsg(p, "staffmode.enabled");
 		STAFFS.add(p);
+		p.performCommand("vanish on");
 		PlayerInventory inv = p.getInventory();
 		StaffModeInventory.save(p.getUniqueId(), inv);
 		inv.setArmorContents(null);
@@ -38,6 +39,7 @@ public class StaffMode {
 	public static void stopStaffMode(Player p) {
 		Msg.sendMsg(p, "staffmode.disabled");
 		STAFFS.remove(p);
+		p.performCommand("vanish off");
 		StaffModeInventory.restore(p.getUniqueId(), p.getInventory());
 	}
 }
