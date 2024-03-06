@@ -12,6 +12,7 @@ import com.elikill58.sanction.spigot.utils.Items;
 public enum ActionType {
 
 	BAN("Ban", 11),
+	BANRSSTAFF("BanRsStaff", -1),
 	KICK("Kick", 13),
 	MUTE("Mute", 15),
 	REPORT("Report", -1);

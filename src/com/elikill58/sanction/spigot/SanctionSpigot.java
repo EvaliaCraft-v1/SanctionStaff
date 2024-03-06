@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.elikill58.sanction.spigot.commands.BanRsStaffCommand;
 import com.elikill58.sanction.spigot.commands.ReportCommand;
 import com.elikill58.sanction.spigot.commands.SanctionCommand;
 import com.elikill58.sanction.spigot.commands.SpecCommand;
@@ -51,6 +52,7 @@ public class SanctionSpigot extends JavaPlugin {
 		getCommand("report").setExecutor(new ReportCommand());
 		getCommand("spec").setExecutor(new SpecCommand());
 		getCommand("staff").setExecutor(new StaffCommand());
+		getCommand("banrsstaff").setExecutor(new BanRsStaffCommand());
 		getCommand("sanction").setExecutor(new SanctionCommand());
 		getCommand("sanctionrl").setExecutor(new CommandExecutor() {
 			public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {

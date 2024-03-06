@@ -11,6 +11,8 @@ commands:
     aliases: [ss]
     description: Sert a donnee une sanction a un joueur
     permmission: sanction.use
+  banrsstaff:
+    permmission: sanction.banrsstaff
   staff:
     permmission: sanction.use
   spec:

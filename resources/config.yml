@@ -147,6 +147,28 @@ ban:
       command: "ban %name% incrr"
       proxy: false
       permission: "sanction.ban2"
+banrsstaff:
+  permission: "sancton.use.bans"
+  items:
+    main:
+      material: BOOK
+      name: "Ban"
+      lore:
+      - "&7Options pour ban le joueur"
+  actions:
+    1:
+      slot: 10
+      name: "Ban test"
+      lore: "Incroyable ban"
+      command: "ban %name% incrr"
+      permission: "sanction.ban"
+    2:
+      slot: 11
+      name: "Ban 2"
+      lore: "Incroyable ban"
+      command: "ban %name% incrr"
+      proxy: false
+      permission: "sanction.ban2"
 report:
   items:
     main:
