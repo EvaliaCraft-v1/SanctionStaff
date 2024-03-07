@@ -45,6 +45,9 @@ main:
       name: "&a%name%"
       lore:
       - "&7Clic pour find"
+      - "&7"
+      - "&7Ping: &6%ping%ms"
+      - "&7Loc: &6%loc_x%/%loc_y%/%loc_z%"
       command: "find %name%"
       proxy: true
     sanctions:

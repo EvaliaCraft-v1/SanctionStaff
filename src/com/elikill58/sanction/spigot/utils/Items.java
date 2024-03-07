@@ -30,9 +30,9 @@ public class Items {
 			builder.displayName(UniversalUtils.replacePlaceholder(sec.getString("name"), placeholder));
 		if (sec.contains("lore")) {
 			if(sec.isList("lore"))
-				builder.lore(sec.getStringList("lore"));
+				builder.lore(UniversalUtils.replacePlaceholder(sec.getStringList("lore"), placeholder));
 			else
-				builder.lore(sec.getString("lore"));
+				builder.lore(UniversalUtils.replacePlaceholder(sec.getString("lore"), placeholder));
 		}
 		if (sec.contains("unbreakable"))
 			builder.unbreakable(sec.getBoolean("unbreakable", false));

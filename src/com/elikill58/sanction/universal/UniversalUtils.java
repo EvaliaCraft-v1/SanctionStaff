@@ -48,4 +48,11 @@ public final class UniversalUtils {
 			message = message.replace(placeholders[index].toString(), placeholders[index + 1].toString());
 		return message;
 	}
+
+	public static List<String> replacePlaceholder(List<String> messages, Object... placeholders) {
+		for(int i = 0; i < messages.size(); i++) {
+			messages.set(i, replacePlaceholder(messages.get(i), placeholders));
+		}
+		return messages;
+	}
 }

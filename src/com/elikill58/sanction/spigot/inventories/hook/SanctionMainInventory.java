@@ -28,9 +28,10 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 
 		for (int i = 0; i < inv.getSize(); i++)
 			inv.setItem(i, Items.EMPTY);
-		
-		inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%name%", cible.getName())).tryOwner(cible).build());
-		
+
+		inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%name%", cible.getName(), "%ping%", cible.getPing(), "%loc_x%",
+				cible.getLocation().getBlockX(), "%loc_y%", cible.getLocation().getBlockY(), "%loc_z%", cible.getLocation().getBlockZ())).tryOwner(cible).build());
+
 		inv.setItem(12, Items.getItem(config.getConfigurationSection("main.items.sanctions"), "%name%", cible.getName()));
 		inv.setItem(13, Items.getItem(config.getConfigurationSection("main.items.dupeip"), "%name%", cible.getName()));
 		inv.setItem(14, Items.getItem(config.getConfigurationSection("main.items.history"), "%name%", cible.getName()));
@@ -43,7 +44,7 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 	@Override
 	public void manageInventory(InventoryClickEvent e, Material m, Player p, SanctionMainHolder nh) {
 		int slot = e.getSlot();
-		if(slot == 10) {
+		if (slot == 10) {
 			p.closeInventory();
 			runCmd(p, nh.getCible(), "main.items.head");
 		} else if (slot == 12)
@@ -62,11 +63,11 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 			runCmd(p, nh.getCible(), "main.items.bell");
 		}
 	}
-	
+
 	private void runCmd(Player p, Player cible, String dir) {
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 		String cmd = config.getString(dir + ".command");
-		if(cmd == null)
+		if (cmd == null)
 			return;
 		boolean proxy = config.getBoolean(dir + ".proxy", false);
 		boolean asPlayer = config.getBoolean(dir + ".as_player", true);
