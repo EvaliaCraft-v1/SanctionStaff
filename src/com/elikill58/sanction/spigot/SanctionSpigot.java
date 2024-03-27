@@ -28,6 +28,7 @@ import com.elikill58.sanction.spigot.inventories.hook.SanctionMainInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerCategoryInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
 import com.elikill58.sanction.spigot.listeners.BlockListener;
+import com.elikill58.sanction.spigot.listeners.ChannelListeners;
 import com.elikill58.sanction.spigot.listeners.StaffModeListener;
 import com.elikill58.sanction.spigot.staffmode.InvEnderSeeListeners;
 import com.elikill58.sanction.spigot.staffmode.endersee.EnderSee;
@@ -101,6 +102,7 @@ public class SanctionSpigot extends JavaPlugin {
 		}, 20, 20);
 
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "sanction:sanctioncmd");
+		getServer().getMessenger().registerIncomingPluginChannel(this, ChannelListeners.CHANNEL_NAME_BRAND, new ChannelListeners());
 	}
 
 	private void loadActions() {

@@ -58,6 +58,7 @@ main:
       - "&7"
       - "&7Ping: &6%ping%ms"
       - "&7Loc: &6%loc_x%/%loc_y%/%loc_z%"
+      - "&7Client: &6%client%"
       command: "find %name%"
       proxy: true
     head_offline:

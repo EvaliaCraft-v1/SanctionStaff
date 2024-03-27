@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.SanctionSpigot;
+import com.elikill58.sanction.spigot.handler.EvaliaPlayer;
 import com.elikill58.sanction.spigot.inventories.AbstractInventory;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
 import com.elikill58.sanction.spigot.inventories.holder.SanctionMainHolder;
@@ -31,7 +32,8 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 			inv.setItem(i, Items.EMPTY);
 
 		if(cible instanceof Player oc) {
-			inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%name%", cible.getName(), "%ping%", oc.getPing(), "%loc_x%",
+			EvaliaPlayer ep = EvaliaPlayer.get(p);
+			inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%client%", ep.getClientName(), "%name%", cible.getName(), "%ping%", oc.getPing(), "%loc_x%",
 					oc.getLocation().getBlockX(), "%loc_y%", oc.getLocation().getBlockY(), "%loc_z%", oc.getLocation().getBlockZ())).tryOwner(cible).build());
 		} else {
 			inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head_offline"), "%name%", cible.getName())).tryOwner(cible).build());
