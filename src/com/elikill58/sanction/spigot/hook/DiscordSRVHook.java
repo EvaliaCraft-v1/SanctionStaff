@@ -3,6 +3,7 @@ package com.elikill58.sanction.spigot.hook;
 import java.util.function.BiFunction;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import github.scarsz.discordsrv.DiscordSRV;
@@ -16,7 +17,7 @@ import github.scarsz.discordsrv.util.TimeUtil;
 
 public class DiscordSRVHook {
 
-	public static void sendReportMessage(Player player, Player reported, String reason) {
+	public static void sendReportMessage(Player player, OfflinePlayer reported, String reason) {
 		JDA jda = DiscordSRV.getPlugin().getJda();
 		MessageFormat messageFormat = DiscordSRV.getPlugin().getMessageFromConfiguration("ReportMessage");
 		if (messageFormat == null)

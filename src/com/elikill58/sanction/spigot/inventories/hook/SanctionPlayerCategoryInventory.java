@@ -1,6 +1,7 @@
 package com.elikill58.sanction.spigot.inventories.hook;
 
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -22,7 +23,7 @@ public class SanctionPlayerCategoryInventory extends AbstractInventory<SanctionP
 
 	@Override
 	public void openInventory(Player p, Object... args) {
-		Player cible = (Player) args[0];
+		OfflinePlayer cible = (OfflinePlayer) args[0];
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 		Inventory inv = createInventory(new SanctionPlayerCategoryHolder(cible), 27, Msg.getMsg("category.inv_name", "%name%", cible.getName()));
 		for (int i = 0; i < inv.getSize(); i++)

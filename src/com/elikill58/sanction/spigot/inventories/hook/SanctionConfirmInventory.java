@@ -1,6 +1,7 @@
 package com.elikill58.sanction.spigot.inventories.hook;
 
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -26,7 +27,7 @@ public class SanctionConfirmInventory extends AbstractInventory<SanctionConfirmH
 
 	@Override
 	public void openInventory(Player p, Object... args) {
-		Player cible = (Player) args[0];
+		OfflinePlayer cible = (OfflinePlayer) args[0];
 		Action action = (Action) args[1];
 
 		Inventory inv = createInventory(new SanctionConfirmHolder(cible, action), 9, Msg.getMsg("confirm.inv_name", "%name%", cible.getName()));
@@ -48,7 +49,7 @@ public class SanctionConfirmInventory extends AbstractInventory<SanctionConfirmH
 			if (e.getSlot() == 5) {
 				InventoryManager.openInventory(p, "REPORT", nh.getCible());
 			} else if (e.getSlot() == 3) {
-				Player cible = nh.getCible();
+				OfflinePlayer cible = nh.getCible();
 				Action ac = nh.getAction();
 				if(SanctionSpigot.hasDiscordSrv())
 					DiscordSRVHook.sendReportMessage(p, cible, ac.getReason());
@@ -60,7 +61,7 @@ public class SanctionConfirmInventory extends AbstractInventory<SanctionConfirmH
 			if (e.getSlot() == 5) {
 				InventoryManager.openInventory(p, "SANCTION_PLAYER", nh.getCible(), nh.getAction().getType());
 			} else if (e.getSlot() == 3) {
-				Player cible = nh.getCible();
+				OfflinePlayer cible = nh.getCible();
 				Action ac = nh.getAction();
 				String cmd = UniversalUtils.replacePlaceholder(ac.getCommand(), "%player%", cible.getName(), "%executor%", p.getName(), "%executor_uuid%", p.getUniqueId());
 				SanctionSpigot.runCommand(p, cmd, ac.isProxy(), false);

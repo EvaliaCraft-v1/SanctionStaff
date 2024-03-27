@@ -60,6 +60,13 @@ main:
       - "&7Loc: &6%loc_x%/%loc_y%/%loc_z%"
       command: "find %name%"
       proxy: true
+    head_offline:
+      material: PLAYER_HEAD
+      name: "&a%name%"
+      lore:
+      - "&7Clic pour find (offline)"
+      command: "find %name%"
+      proxy: true
     sanctions:
       material: ENCHANTED_BOOK
       name: "&aSanction"

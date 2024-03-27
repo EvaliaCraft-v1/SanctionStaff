@@ -1,6 +1,7 @@
 package com.elikill58.sanction.spigot.inventories.hook;
 
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -22,16 +23,20 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 
 	@Override
 	public void openInventory(Player p, Object... args) {
-		Player cible = (Player) args[0];
+		OfflinePlayer cible = (OfflinePlayer) args[0];
 		Inventory inv = createInventory(new SanctionMainHolder(cible), 27, Msg.getMsg("main.inv_name", "%name%", cible.getName()));
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 
 		for (int i = 0; i < inv.getSize(); i++)
 			inv.setItem(i, Items.EMPTY);
 
-		inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%name%", cible.getName(), "%ping%", cible.getPing(), "%loc_x%",
-				cible.getLocation().getBlockX(), "%loc_y%", cible.getLocation().getBlockY(), "%loc_z%", cible.getLocation().getBlockZ())).tryOwner(cible).build());
-
+		if(cible instanceof Player oc) {
+			inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%name%", cible.getName(), "%ping%", oc.getPing(), "%loc_x%",
+					oc.getLocation().getBlockX(), "%loc_y%", oc.getLocation().getBlockY(), "%loc_z%", oc.getLocation().getBlockZ())).tryOwner(cible).build());
+		} else {
+			inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head_offline"), "%name%", cible.getName())).tryOwner(cible).build());
+		}
+		
 		inv.setItem(12, Items.getItem(config.getConfigurationSection("main.items.sanctions"), "%name%", cible.getName()));
 		inv.setItem(13, Items.getItem(config.getConfigurationSection("main.items.dupeip"), "%name%", cible.getName()));
 		inv.setItem(14, Items.getItem(config.getConfigurationSection("main.items.history"), "%name%", cible.getName()));
@@ -64,7 +69,7 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 		}
 	}
 
-	private void runCmd(Player p, Player cible, String dir) {
+	private void runCmd(Player p, OfflinePlayer cible, String dir) {
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 		String cmd = config.getString(dir + ".command");
 		if (cmd == null)
