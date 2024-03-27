@@ -30,6 +30,14 @@ messages:
   spec:
     survival: "&aVous êtes désormais en &esurvie"
     spec: "&aVous êtes désormais en &dspéctateur"
+  invsee:
+    inv_name: "Menu | Inventaire de %name%"
+    help: "/invsee <name> : Voir l'inventaire du joueur"
+    exp_level: "Niveau d'expérience: %xp%"
+    head:
+      name: "%name%"
+      lore:
+      - "&7%ping%ms"
 permissions:
   admin: sanction.command.manager
   no_tp: sanction.use

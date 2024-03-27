@@ -8,10 +8,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.elikill58.sanction.spigot.commands.BanRsStaffCommand;
+import com.elikill58.sanction.spigot.commands.InvSeeCommand;
 import com.elikill58.sanction.spigot.commands.ReportCommand;
 import com.elikill58.sanction.spigot.commands.SanctionCommand;
 import com.elikill58.sanction.spigot.commands.SpecCommand;
@@ -26,7 +28,8 @@ import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerCategoryInve
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
 import com.elikill58.sanction.spigot.listeners.BlockListener;
 import com.elikill58.sanction.spigot.listeners.StaffModeListener;
-import com.elikill58.sanction.spigot.staffmode.InvSeePlusPlusHook;
+import com.elikill58.sanction.spigot.staffmode.invsee.InvSee;
+import com.elikill58.sanction.spigot.staffmode.invsee.InvSeeHolder;
 import com.elikill58.sanction.spigot.staffmode.invsee.InvSeeListeners;
 import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 
@@ -38,6 +41,7 @@ public class SanctionSpigot extends JavaPlugin {
 	public static SanctionSpigot getInstance() {
 		return instance;
 	}
+
 	public static boolean hasDiscordSrv() {
 		return hasDiscordSrv;
 	}
@@ -53,6 +57,7 @@ public class SanctionSpigot extends JavaPlugin {
 		getCommand("spec").setExecutor(new SpecCommand());
 		getCommand("staff").setExecutor(new StaffCommand());
 		getCommand("banrsstaff").setExecutor(new BanRsStaffCommand());
+		getCommand("invsee").setExecutor(new InvSeeCommand());
 		getCommand("sanction").setExecutor(new SanctionCommand());
 		getCommand("sanctionrl").setExecutor(new CommandExecutor() {
 			public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -68,10 +73,7 @@ public class SanctionSpigot extends JavaPlugin {
 		pm.registerEvents(new BlockListener(), this);
 		pm.registerEvents(new StaffModeListener(), this);
 		pm.registerEvents(new InvSeeListeners(), this);
-		
-		if(pm.isPluginEnabled("InvSeePlusPlus")) {
-			InvSeePlusPlusHook.load();
-		}
+
 		hasDiscordSrv = pm.isPluginEnabled("DiscordSRV");
 
 		InventoryManager.registerInventory("SANCTION_MAIN", new SanctionMainInventory());
@@ -80,6 +82,17 @@ public class SanctionSpigot extends JavaPlugin {
 		InventoryManager.registerInventory("SANCTION_CONFIRM", new SanctionConfirmInventory());
 		InventoryManager.registerInventory("REPORT", new ReportInventory());
 
+		getServer().getScheduler().runTaskTimer(this, () -> {
+			InvSee.getSpectating().forEach(all -> {
+				if (all.getOpenInventory() == null || all.getOpenInventory().getTopInventory() == null)
+					return;
+				Inventory topInv = all.getOpenInventory().getTopInventory();
+				if (topInv.getHolder() != null && topInv.getHolder() instanceof InvSeeHolder holder) {
+					InvSee.update(holder.getPlayer(), holder.getCible(), topInv);
+				}
+			});
+		}, 20, 20);
+
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "sanction:sanctioncmd");
 	}
 
@@ -87,11 +100,11 @@ public class SanctionSpigot extends JavaPlugin {
 		actions.clear();
 		Arrays.asList(ActionType.values()).forEach(a -> a.loadActions(this));
 	}
-	
+
 	public static void runCommand(Player p, String command, boolean proxy, boolean asPlayer) {
-		if(proxy) {
+		if (proxy) {
 			getInstance().getLogger().info(p.getName() + " running '" + command + "' bungee command.");
-			if(asPlayer)
+			if (asPlayer)
 				SpigotToBungee.sendPlayerCmdToBungee(p, command);
 			else
 				SpigotToBungee.sendCmdToBungee(p, command);
