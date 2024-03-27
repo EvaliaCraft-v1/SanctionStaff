@@ -32,7 +32,9 @@ messages:
     spec: "&aVous êtes désormais en &dspéctateur"
   invsee:
     inv_name: "Menu | Inventaire de %name%"
+    inv_name_enderchest: "Menu | EnderChest de %name%"
     help: "/invsee <name> : Voir l'inventaire du joueur"
+    help_enderchest: "/endersee <name> : Voir l'inventaire de l'end du joueur"
     exp_level: "Niveau d'expérience: %xp%"
     head:
       name: "%name%"

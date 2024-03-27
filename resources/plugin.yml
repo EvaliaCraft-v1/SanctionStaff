@@ -23,3 +23,5 @@ commands:
     description: Signale un joueur
   invsee:
     permmission: sanction.invsee
+  endersee:
+    permmission: sanction.endersee

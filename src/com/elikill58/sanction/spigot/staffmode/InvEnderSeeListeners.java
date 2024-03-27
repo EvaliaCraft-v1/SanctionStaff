@@ -1,4 +1,4 @@
-package com.elikill58.sanction.spigot.staffmode.invsee;
+package com.elikill58.sanction.spigot.staffmode;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -11,13 +11,20 @@ import org.bukkit.event.inventory.InventoryInteractEvent;
 import org.bukkit.inventory.Inventory;
 
 import com.elikill58.sanction.spigot.SanctionSpigot;
+import com.elikill58.sanction.spigot.staffmode.endersee.EnderSee;
+import com.elikill58.sanction.spigot.staffmode.endersee.EnderSeeHolder;
+import com.elikill58.sanction.spigot.staffmode.invsee.InvSee;
+import com.elikill58.sanction.spigot.staffmode.invsee.InvSeeHolder;
 
-public class InvSeeListeners implements Listener {
+public class InvEnderSeeListeners implements Listener {
 
 	@EventHandler
 	public void onInventoryClose(InventoryCloseEvent e) {
-		if (e.getPlayer() instanceof Player p && e.getInventory() != null && e.getInventory().getHolder() != null && e.getInventory().getHolder() instanceof InvSeeHolder) {
-			InvSee.getSpectating().remove(p);
+		if (e.getPlayer() instanceof Player p && e.getInventory() != null && e.getInventory().getHolder() != null) {
+			if(e.getInventory().getHolder() instanceof InvSeeHolder)
+				InvSee.getSpectating().remove(p);
+			else if(e.getInventory().getHolder() instanceof EnderSeeHolder)
+				EnderSee.getSpectating().remove(p);
 		}
 	}
 
@@ -40,15 +47,20 @@ public class InvSeeListeners implements Listener {
 					InvSee.getSpectating().stream()
 							.filter(all -> all.getOpenInventory() != null && all.getOpenInventory().getTopInventory() != null && all.getOpenInventory().getTopInventory().getHolder() != null)
 							.forEach(all -> {
-								if (all.getOpenInventory().getTopInventory().getHolder() instanceof InvSeeHolder holder) {
+								Inventory topInv = all.getOpenInventory().getTopInventory();
+								if (topInv.getHolder() instanceof InvSeeHolder holder) {
 									if (holder.getCible().getUniqueId().equals(cible.getUniqueId())) {
-										InvSee.update(holder.getPlayer(), cible, all.getOpenInventory().getTopInventory());
+										InvSee.update(holder.getPlayer(), cible, topInv);
+									}
+								} else if (topInv.getHolder() instanceof EnderSeeHolder holder) {
+									if (holder.getCible().getUniqueId().equals(cible.getUniqueId())) {
+										EnderSee.update(holder.getPlayer(), cible, topInv);
 									}
 								}
 							});
 				}, 1);
 			}
-			if (inv.getHolder() != null && inv.getHolder() instanceof InvSeeHolder)
+			if (inv.getHolder() != null && (inv.getHolder() instanceof InvSeeHolder || inv.getHolder() instanceof EnderSeeHolder) && !cible.isOp())
 				e.setCancelled(true);
 		}
 	}

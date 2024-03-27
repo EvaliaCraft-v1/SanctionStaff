@@ -13,6 +13,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.elikill58.sanction.spigot.commands.BanRsStaffCommand;
+import com.elikill58.sanction.spigot.commands.EnderSeeCommand;
 import com.elikill58.sanction.spigot.commands.InvSeeCommand;
 import com.elikill58.sanction.spigot.commands.ReportCommand;
 import com.elikill58.sanction.spigot.commands.SanctionCommand;
@@ -28,9 +29,11 @@ import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerCategoryInve
 import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
 import com.elikill58.sanction.spigot.listeners.BlockListener;
 import com.elikill58.sanction.spigot.listeners.StaffModeListener;
+import com.elikill58.sanction.spigot.staffmode.InvEnderSeeListeners;
+import com.elikill58.sanction.spigot.staffmode.endersee.EnderSee;
+import com.elikill58.sanction.spigot.staffmode.endersee.EnderSeeHolder;
 import com.elikill58.sanction.spigot.staffmode.invsee.InvSee;
 import com.elikill58.sanction.spigot.staffmode.invsee.InvSeeHolder;
-import com.elikill58.sanction.spigot.staffmode.invsee.InvSeeListeners;
 import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 
 public class SanctionSpigot extends JavaPlugin {
@@ -58,6 +61,7 @@ public class SanctionSpigot extends JavaPlugin {
 		getCommand("staff").setExecutor(new StaffCommand());
 		getCommand("banrsstaff").setExecutor(new BanRsStaffCommand());
 		getCommand("invsee").setExecutor(new InvSeeCommand());
+		getCommand("endersee").setExecutor(new EnderSeeCommand());
 		getCommand("sanction").setExecutor(new SanctionCommand());
 		getCommand("sanctionrl").setExecutor(new CommandExecutor() {
 			public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -72,7 +76,7 @@ public class SanctionSpigot extends JavaPlugin {
 		pm.registerEvents(new InventoryManager(), this);
 		pm.registerEvents(new BlockListener(), this);
 		pm.registerEvents(new StaffModeListener(), this);
-		pm.registerEvents(new InvSeeListeners(), this);
+		pm.registerEvents(new InvEnderSeeListeners(), this);
 
 		hasDiscordSrv = pm.isPluginEnabled("DiscordSRV");
 
@@ -87,9 +91,12 @@ public class SanctionSpigot extends JavaPlugin {
 				if (all.getOpenInventory() == null || all.getOpenInventory().getTopInventory() == null)
 					return;
 				Inventory topInv = all.getOpenInventory().getTopInventory();
-				if (topInv.getHolder() != null && topInv.getHolder() instanceof InvSeeHolder holder) {
+				if (topInv.getHolder() == null)
+					return;
+				if (topInv.getHolder() instanceof InvSeeHolder holder)
 					InvSee.update(holder.getPlayer(), holder.getCible(), topInv);
-				}
+				else if (topInv.getHolder() instanceof EnderSeeHolder holder)
+					EnderSee.update(holder.getPlayer(), holder.getCible(), topInv);
 			});
 		}, 20, 20);
 
