@@ -49,7 +49,7 @@ public class SanctionPlayerCategoryInventory extends AbstractInventory<SanctionP
 			return;
 		for (ActionType type : ActionType.values()) {
 			if(type.getSlot() < 0)
-				return;
+				continue;
 			if (type.getSlot() == e.getSlot())
 				InventoryManager.openInventory(p, "SANCTION_PLAYER", nh.getCible(), type);
 		}
