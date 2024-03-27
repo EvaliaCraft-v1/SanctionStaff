@@ -30,7 +30,7 @@ public class SanctionPlayerCategoryInventory extends AbstractInventory<SanctionP
 			inv.setItem(i, Items.EMPTY);
 		for (ActionType type : ActionType.values()) {
 			if(type.getSlot() < 0)
-				return;
+				continue;
 			String perm = config.getString(type.name().toLowerCase() + ".permission");
 			if(perm == null || p.hasPermission(perm))
 				inv.setItem(type.getSlot(), Items.getItem(config.getConfigurationSection(type.name().toLowerCase() + ".items.main")));
