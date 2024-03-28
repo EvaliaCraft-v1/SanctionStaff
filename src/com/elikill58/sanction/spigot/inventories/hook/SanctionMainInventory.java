@@ -32,7 +32,7 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 			inv.setItem(i, Items.EMPTY);
 
 		if(cible instanceof Player oc) {
-			EvaliaPlayer ep = EvaliaPlayer.get(p);
+			EvaliaPlayer ep = EvaliaPlayer.get(oc);
 			inv.setItem(10, new ItemStackBuilder(Items.getItem(config.getConfigurationSection("main.items.head"), "%client%", ep.getClientName(), "%name%", cible.getName(), "%ping%", oc.getPing(), "%loc_x%",
 					oc.getLocation().getBlockX(), "%loc_y%", oc.getLocation().getBlockY(), "%loc_z%", oc.getLocation().getBlockZ())).tryOwner(cible).build());
 		} else {
