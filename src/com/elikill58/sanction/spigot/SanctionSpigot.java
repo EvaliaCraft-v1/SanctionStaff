@@ -108,6 +108,7 @@ public class SanctionSpigot extends JavaPlugin {
 	private void loadActions() {
 		actions.clear();
 		Arrays.asList(ActionType.values()).forEach(a -> a.loadActions(this));
+		BlockListener.load(this);
 	}
 
 	public static void runCommand(Player p, String command, boolean proxy, boolean asPlayer) {
