@@ -21,6 +21,8 @@ public class BlockListener implements Listener {
 	public static void load(SanctionSpigot pl) {
 		BLOCK_ALERTS.clear();
 		ConfigurationSection section = pl.getConfig().getConfigurationSection("block_alert");
+		if(section == null)
+			return;
 		for(String key : section.getKeys(false)) {
 			Material type = Material.matchMaterial(key);
 			if(type == null)
