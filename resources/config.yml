@@ -43,6 +43,8 @@ messages:
 permissions:
   admin: sanction.command.manager
   no_tp: sanction.use
+  invsee_interact: sanction.invsee.interact
+  endersee_interact: sanction.endersee.interact
 
 back-item:
   material: OAK_DOOR

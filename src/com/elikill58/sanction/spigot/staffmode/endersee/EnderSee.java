@@ -1,8 +1,5 @@
 package com.elikill58.sanction.spigot.staffmode.endersee;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -12,19 +9,14 @@ import org.bukkit.inventory.ItemStack;
 
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.staffmode.InvEnderSee;
+import com.elikill58.sanction.spigot.staffmode.InvEnderType;
 import com.elikill58.sanction.spigot.utils.ItemStackBuilder;
 import com.elikill58.sanction.spigot.utils.Items;
 
 public class EnderSee {
-	
-	private static final List<Player> spectating = new ArrayList<>();
 
-	public static List<Player> getSpectating() {
-		return spectating;
-	}
-	
 	public static void open(Player p, OfflinePlayer cible) {
-		spectating.add(p);
+		InvEnderSee.getSpectating().put(p, InvEnderType.ENDER);
 		Inventory inv = Bukkit.createInventory(new EnderSeeHolder(p, cible), 45, Msg.getMsg("invsee.inv_name_enderchest", "%name%", cible.getName()));
 		update(p, cible, inv);
 		p.openInventory(inv);
@@ -37,8 +29,8 @@ public class EnderSee {
 		for(int i = 0; i < 18; i++)
 			inv.setItem(i, Items.EMPTY);
 		
-		inv.setItem(1, InvEnderSee.createHead(cible, oc, real));
-		inv.setItem(2, new ItemStackBuilder(Material.EXPERIENCE_BOTTLE, oc.getExpToLevel() == 0 ? 1 : (oc.getExpToLevel() > 64 ? 64 : oc.getExpToLevel())).displayName(Msg.getMsg("invsee.exp_level", "%xp%", oc.getExpToLevel())).build());
+		inv.setItem(3, InvEnderSee.createHead(cible, oc, real));
+		inv.setItem(5, new ItemStackBuilder(Material.EXPERIENCE_BOTTLE, oc.getExpToLevel() == 0 ? 1 : (oc.getExpToLevel() > 64 ? 64 : oc.getExpToLevel())).displayName(Msg.getMsg("invsee.exp_level", "%xp%", oc.getExpToLevel())).build());
 		
 		int i = 18;
 		for(ItemStack item : source.getContents()) {

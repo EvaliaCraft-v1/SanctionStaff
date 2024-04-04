@@ -30,6 +30,7 @@ import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
 import com.elikill58.sanction.spigot.listeners.BlockListener;
 import com.elikill58.sanction.spigot.listeners.ChannelListeners;
 import com.elikill58.sanction.spigot.listeners.StaffModeListener;
+import com.elikill58.sanction.spigot.staffmode.InvEnderSee;
 import com.elikill58.sanction.spigot.staffmode.InvEnderSeeListeners;
 import com.elikill58.sanction.spigot.staffmode.endersee.EnderSee;
 import com.elikill58.sanction.spigot.staffmode.endersee.EnderSeeHolder;
@@ -88,7 +89,7 @@ public class SanctionSpigot extends JavaPlugin {
 		InventoryManager.registerInventory("REPORT", new ReportInventory());
 
 		getServer().getScheduler().runTaskTimer(this, () -> {
-			InvSee.getSpectating().forEach(all -> {
+			InvEnderSee.getSpectating().forEach((all, type) -> {
 				if (all.getOpenInventory() == null || all.getOpenInventory().getTopInventory() == null)
 					return;
 				Inventory topInv = all.getOpenInventory().getTopInventory();

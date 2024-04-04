@@ -1,5 +1,7 @@
 package com.elikill58.sanction.spigot.staffmode;
 
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -16,6 +18,10 @@ import com.mojang.authlib.GameProfile;
 
 public class InvEnderSee {
 
+	private static final HashMap<Player, InvEnderType> spectating = new HashMap<>();
+	public static HashMap<Player, InvEnderType> getSpectating() {
+		return spectating;
+	}
 
 	public static Player load(OfflinePlayer offline, World w) {
 		try {

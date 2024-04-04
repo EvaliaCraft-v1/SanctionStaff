@@ -1,8 +1,5 @@
 package com.elikill58.sanction.spigot.staffmode.invsee;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -13,19 +10,14 @@ import org.bukkit.inventory.PlayerInventory;
 
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.staffmode.InvEnderSee;
+import com.elikill58.sanction.spigot.staffmode.InvEnderType;
 import com.elikill58.sanction.spigot.utils.ItemStackBuilder;
 import com.elikill58.sanction.spigot.utils.Items;
 
 public class InvSee {
 	
-	private static final List<Player> spectating = new ArrayList<>();
-
-	public static List<Player> getSpectating() {
-		return spectating;
-	}
-	
 	public static void open(Player p, OfflinePlayer cible) {
-		spectating.add(p);
+		InvEnderSee.getSpectating().put(p, InvEnderType.INV);
 		Inventory inv = Bukkit.createInventory(new InvSeeHolder(p, cible), 54, Msg.getMsg("invsee.inv_name", "%name%", cible.getName()));
 		update(p, cible, inv);
 		p.openInventory(inv);
