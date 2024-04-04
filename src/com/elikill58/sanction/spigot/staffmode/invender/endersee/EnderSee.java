@@ -1,4 +1,4 @@
-package com.elikill58.sanction.spigot.staffmode.endersee;
+package com.elikill58.sanction.spigot.staffmode.invender.endersee;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -8,8 +8,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import com.elikill58.sanction.spigot.Msg;
-import com.elikill58.sanction.spigot.staffmode.InvEnderSee;
-import com.elikill58.sanction.spigot.staffmode.InvEnderType;
+import com.elikill58.sanction.spigot.staffmode.invender.InvEnderSee;
+import com.elikill58.sanction.spigot.staffmode.invender.InvEnderType;
 import com.elikill58.sanction.spigot.utils.ItemStackBuilder;
 import com.elikill58.sanction.spigot.utils.Items;
 
@@ -40,4 +40,11 @@ public class EnderSee {
 		}
 	}
 	
+	public static void setItemInInventory(Player p, OfflinePlayer cible, int slot, ItemStack item) {
+		boolean real = cible instanceof Player;
+		Player cp = real ? (Player) cible : InvEnderSee.load(cible, p.getWorld());
+		Inventory  inv = cp.getInventory();
+		inv.setItem(slot - 18, item);
+		cp.saveData();
+	}
 }

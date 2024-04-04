@@ -1,18 +1,20 @@
-package com.elikill58.sanction.spigot.staffmode.endersee;
+package com.elikill58.sanction.spigot.staffmode.invender;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
-public class EnderSeeHolder implements InventoryHolder {
+public abstract class InvEnderHolder implements InventoryHolder {
 	
 	private final Player p;
 	private final OfflinePlayer cible;
+	private final InvEnderType type;
 	
-	public EnderSeeHolder(Player p, OfflinePlayer cible) {
+	public InvEnderHolder(Player p, OfflinePlayer cible, InvEnderType type) {
 		this.p = p;
 		this.cible = cible;
+		this.type = type;
 	}
 	
 	public OfflinePlayer getCible() {
@@ -21,6 +23,10 @@ public class EnderSeeHolder implements InventoryHolder {
 	
 	public Player getPlayer() {
 		return p;
+	}
+	
+	public InvEnderType getType() {
+		return type;
 	}
 	
 	@Override

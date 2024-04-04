@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import com.elikill58.sanction.spigot.Msg;
 import com.elikill58.sanction.spigot.SanctionSpigot;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
-import com.elikill58.sanction.spigot.staffmode.invsee.InvSee;
+import com.elikill58.sanction.spigot.staffmode.invender.invsee.InvSee;
 import com.elikill58.sanction.spigot.utils.Items;
 
 public enum StaffFeatures {

@@ -1,4 +1,4 @@
-package com.elikill58.sanction.spigot.staffmode;
+package com.elikill58.sanction.spigot.staffmode.invender;
 
 import java.util.HashMap;
 

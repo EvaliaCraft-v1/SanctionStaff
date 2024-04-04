@@ -30,12 +30,12 @@ import com.elikill58.sanction.spigot.inventories.hook.SanctionPlayerInventory;
 import com.elikill58.sanction.spigot.listeners.BlockListener;
 import com.elikill58.sanction.spigot.listeners.ChannelListeners;
 import com.elikill58.sanction.spigot.listeners.StaffModeListener;
-import com.elikill58.sanction.spigot.staffmode.InvEnderSee;
-import com.elikill58.sanction.spigot.staffmode.InvEnderSeeListeners;
-import com.elikill58.sanction.spigot.staffmode.endersee.EnderSee;
-import com.elikill58.sanction.spigot.staffmode.endersee.EnderSeeHolder;
-import com.elikill58.sanction.spigot.staffmode.invsee.InvSee;
-import com.elikill58.sanction.spigot.staffmode.invsee.InvSeeHolder;
+import com.elikill58.sanction.spigot.staffmode.invender.InvEnderSee;
+import com.elikill58.sanction.spigot.staffmode.invender.InvEnderSeeListeners;
+import com.elikill58.sanction.spigot.staffmode.invender.endersee.EnderSee;
+import com.elikill58.sanction.spigot.staffmode.invender.endersee.EnderSeeHolder;
+import com.elikill58.sanction.spigot.staffmode.invender.invsee.InvSee;
+import com.elikill58.sanction.spigot.staffmode.invender.invsee.InvSeeHolder;
 import com.elikill58.sanction.spigot.utils.SpigotToBungee;
 
 public class SanctionSpigot extends JavaPlugin {

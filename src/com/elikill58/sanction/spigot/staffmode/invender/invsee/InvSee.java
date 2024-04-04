@@ -1,4 +1,4 @@
-package com.elikill58.sanction.spigot.staffmode.invsee;
+package com.elikill58.sanction.spigot.staffmode.invender.invsee;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -9,8 +9,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import com.elikill58.sanction.spigot.Msg;
-import com.elikill58.sanction.spigot.staffmode.InvEnderSee;
-import com.elikill58.sanction.spigot.staffmode.InvEnderType;
+import com.elikill58.sanction.spigot.staffmode.invender.InvEnderSee;
+import com.elikill58.sanction.spigot.staffmode.invender.InvEnderType;
 import com.elikill58.sanction.spigot.utils.ItemStackBuilder;
 import com.elikill58.sanction.spigot.utils.Items;
 
@@ -47,4 +47,20 @@ public class InvSee {
 		}
 	}
 	
+	public static void setItemInInventory(Player p, OfflinePlayer cible, int slot, ItemStack item) {
+		Player cp = cible instanceof Player ? (Player) cible : InvEnderSee.load(cible, p.getWorld());
+		if(slot == 4)
+			cp.getInventory().setHelmet(item);
+		else if(slot == 5)
+			cp.getInventory().setChestplate(item);
+		else if(slot == 6)
+			cp.getInventory().setLeggings(item);
+		else if(slot == 7)
+			cp.getInventory().setBoots(item);
+		else if(slot >= 18 && slot <= (18 + 27))
+			cp.getInventory().setItem(slot - 9, item);
+		else if(slot >= 45)
+			cp.getInventory().setItem(slot - 45, item);
+		cp.saveData();
+	}
 }

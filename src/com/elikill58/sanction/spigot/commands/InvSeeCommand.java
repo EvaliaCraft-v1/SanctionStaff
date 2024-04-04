@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.elikill58.sanction.spigot.Msg;
-import com.elikill58.sanction.spigot.staffmode.invsee.InvSee;
+import com.elikill58.sanction.spigot.staffmode.invender.invsee.InvSee;
 
 public class InvSeeCommand implements CommandExecutor {
 

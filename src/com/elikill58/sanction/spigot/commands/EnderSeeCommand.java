@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.elikill58.sanction.spigot.Msg;
-import com.elikill58.sanction.spigot.staffmode.endersee.EnderSee;
+import com.elikill58.sanction.spigot.staffmode.invender.endersee.EnderSee;
 
 public class EnderSeeCommand implements CommandExecutor {
 
