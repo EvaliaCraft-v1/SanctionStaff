@@ -43,7 +43,7 @@ public class EnderSee {
 	public static void setItemInInventory(Player p, OfflinePlayer cible, int slot, ItemStack item) {
 		boolean real = cible instanceof Player;
 		Player cp = real ? (Player) cible : InvEnderSee.load(cible, p.getWorld());
-		Inventory  inv = cp.getInventory();
+		Inventory  inv = cp.getEnderChest();
 		inv.setItem(slot - 18, item);
 		cp.saveData();
 	}
