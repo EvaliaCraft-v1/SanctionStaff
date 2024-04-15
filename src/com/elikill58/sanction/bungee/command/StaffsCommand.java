@@ -28,8 +28,7 @@ public class StaffsCommand extends Command {
 			for(ProxiedPlayer pp : srv.getPlayers())
 				if(pp.hasPermission(PERM))
 					sj.add(pp.getName());
-			if(sj.length() > 0)
-				BMsg.sendMsg(sender, "staffs.line", "%names%", sj.length() == 0 ? "Aucun" : sj.toString(), "%server%", srv.getName());
+			BMsg.sendMsg(sender, "staffs.line", "%names%", sj.length() == 0 ? BMsg.getMsg("staffs.none") : sj.toString(), "%server%", srv.getName());
 		}
 		BMsg.sendMsg(sender, "staffs.footer");
 	}

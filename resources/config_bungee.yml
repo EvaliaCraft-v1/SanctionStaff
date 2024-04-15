@@ -7,6 +7,7 @@ messages:
     - "&f&m-----------------------"
     - "  &7Staff en ligne:"
     line: "&c(&6%server%&c) -> %names%"
+    none: "-"
     footer:
     - ""
     - "&f&m-----------------------"
