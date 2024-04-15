@@ -34,7 +34,6 @@ public class InventoryManager implements Listener {
 		INV.values().forEach((inv) -> inv.onPlayerLeft(e));
 	}
 	
-	@SuppressWarnings({ "rawtypes" })
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
 		ItemStack item = e.getCurrentItem();

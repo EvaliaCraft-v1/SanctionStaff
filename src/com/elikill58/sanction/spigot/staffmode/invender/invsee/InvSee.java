@@ -57,7 +57,7 @@ public class InvSee {
 			cp.getInventory().setLeggings(item);
 		else if(slot == 7)
 			cp.getInventory().setBoots(item);
-		else if(slot >= 18 && slot <= (18 + 27))
+		else if(slot >= 18 && slot < 45)
 			cp.getInventory().setItem(slot - 9, item);
 		else if(slot >= 45)
 			cp.getInventory().setItem(slot - 45, item);

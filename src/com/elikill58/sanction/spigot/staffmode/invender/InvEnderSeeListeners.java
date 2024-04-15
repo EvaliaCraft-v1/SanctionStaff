@@ -1,6 +1,7 @@
 package com.elikill58.sanction.spigot.staffmode.invender;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -42,6 +43,14 @@ public class InvEnderSeeListeners implements Listener {
 				if (!type.hasInteractPermission(p) || type.getSlots().contains(slot))
 					e.setCancelled(true);
 				else { // change item into other inv
+					if(type.equals(InvEnderType.INV) && e.getCurrentItem() != null) {
+						Material mat = e.getCurrentItem().getType();
+						if((slot == 4 && !mat.name().contains("_HELMET"))
+								|| (slot == 5 && !mat.name().contains("_CHESTPLATE"))
+								|| (slot == 6 && !mat.name().contains("_LEGGINGS"))
+								|| (slot == 7 && !mat.name().contains("_BOOTS")))
+							e.setCancelled(true);
+					}
 					Bukkit.getScheduler().runTaskLater(SanctionSpigot.getInstance(), () -> {
 						type.setItemInInventory(p, cible, slot, inv.getItem(slot));
 						type.update(p, cible, inv);

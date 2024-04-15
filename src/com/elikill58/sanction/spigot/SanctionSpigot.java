@@ -66,6 +66,7 @@ public class SanctionSpigot extends JavaPlugin {
 		getCommand("endersee").setExecutor(new EnderSeeCommand());
 		getCommand("sanction").setExecutor(new SanctionCommand());
 		getCommand("sanctionrl").setExecutor(new CommandExecutor() {
+			@Override
 			public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 				reloadConfig();
 				loadActions();
