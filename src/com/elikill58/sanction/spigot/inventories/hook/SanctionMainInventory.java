@@ -78,6 +78,6 @@ public class SanctionMainInventory extends AbstractInventory<SanctionMainHolder>
 			return;
 		boolean proxy = config.getBoolean(dir + ".proxy", false);
 		boolean asPlayer = config.getBoolean(dir + ".as_player", true);
-		SanctionSpigot.runCommand(p, cmd.replace("%name%", cible.getName()), proxy, asPlayer);
+		SanctionSpigot.runCommand(p, cmd.replace("%name%", cible.getName()).replace("%player%", cible.getName()), proxy, asPlayer);
 	}
 }
