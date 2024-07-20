@@ -23,8 +23,11 @@ public class StaffsCommand extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		BMsg.sendMsg(sender, "staffs.header");
-		ProxyServer.getInstance().getServers().keySet().stream().sorted().toList();
-		for(String srvname : ProxyServer.getInstance().getServers().keySet().stream().sorted().toList()) {
+		for(String srvname : ProxyServer.getInstance().getServers().keySet().stream().sorted((a, b) -> {
+				if(b.equalsIgnoreCase("Creatif"))
+					return -1;
+				return a.compareTo(b);
+			}).toList()) {
 			ServerInfo srv = ProxyServer.getInstance().getServerInfo(srvname);
 			StringJoiner sj = new StringJoiner(", ");
 			for(ProxiedPlayer pp : srv.getPlayers())
