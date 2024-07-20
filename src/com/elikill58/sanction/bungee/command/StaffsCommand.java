@@ -23,7 +23,9 @@ public class StaffsCommand extends Command {
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		BMsg.sendMsg(sender, "staffs.header");
-		for(ServerInfo srv : ProxyServer.getInstance().getServers().values()) {
+		ProxyServer.getInstance().getServers().keySet().stream().sorted().toList();
+		for(String srvname : ProxyServer.getInstance().getServers().keySet().stream().sorted().toList()) {
+			ServerInfo srv = ProxyServer.getInstance().getServerInfo(srvname);
 			StringJoiner sj = new StringJoiner(", ");
 			for(ProxiedPlayer pp : srv.getPlayers())
 				if(pp.hasPermission(PERM))
