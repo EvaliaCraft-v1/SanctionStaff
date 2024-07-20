@@ -25,7 +25,7 @@ public class ReportInventory extends AbstractInventory<ReportHolder> {
 	@Override
 	public void openInventory(Player p, Object... args) {
 		Player cible = (Player) args[0];
-		Inventory inv = createInventory(new ReportHolder(cible), 27, Msg.getMsg("main.inv_name", "%name%", cible.getName()));
+		Inventory inv = createInventory(new ReportHolder(cible), 27, Msg.getMsg("report.inv_name", "%name%", cible.getName()));
 		FileConfiguration config = SanctionSpigot.getInstance().getConfig();
 
 		for (int i = 0; i < inv.getSize(); i++)
