@@ -1,6 +1,7 @@
 package com.elikill58.sanction.bungee.command;
 
-import java.util.StringJoiner;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.elikill58.sanction.bungee.BMsg;
 import com.elikill58.sanction.bungee.BungeeConfig;
@@ -26,14 +27,17 @@ public class StaffsCommand extends Command {
 		for(String srvname : ProxyServer.getInstance().getServers().keySet().stream().sorted((a, b) -> {
 				if(b.equalsIgnoreCase("Creatif"))
 					return -1;
+				if(a.equalsIgnoreCase("Creatif"))
+					return 1;
 				return a.compareTo(b);
 			}).toList()) {
 			ServerInfo srv = ProxyServer.getInstance().getServerInfo(srvname);
-			StringJoiner sj = new StringJoiner(", ");
+			List<String> sj = new ArrayList<>();
 			for(ProxiedPlayer pp : srv.getPlayers())
 				if(pp.hasPermission(PERM))
 					sj.add(pp.getName());
-			BMsg.sendMsg(sender, "staffs.line", "%names%", sj.length() == 0 ? BMsg.getMsg("staffs.none") : sj.toString(), "%server%", srv.getName());
+			sj.sort(String::compareTo);
+			BMsg.sendMsg(sender, "staffs.line", "%names%", sj.size() == 0 ? BMsg.getMsg("staffs.none") : String.join(", ", sj), "%server%", srv.getName());
 		}
 		BMsg.sendMsg(sender, "staffs.footer");
 	}
