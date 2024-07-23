@@ -23,7 +23,6 @@ public class SanctionCommand implements CommandExecutor {
 			if (cible == null) {
 				Msg.sendMsg(p, "not_found", "%arg%", args[0]);
 			} else {
-				Msg.sendMsg(p, "select", "%name%", cible.getName());
 				String superPerm = SanctionSpigot.getInstance().getConfig().getString("permissions.admin");
 				if (((cible instanceof Player oc && oc.hasPermission(superPerm)) || !(cible instanceof Player)) && !p.hasPermission(superPerm)) {
 					Msg.sendMsg(p, "no_touch");

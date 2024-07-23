@@ -21,6 +21,7 @@ import com.elikill58.sanction.spigot.commands.SpecCommand;
 import com.elikill58.sanction.spigot.commands.StaffCommand;
 import com.elikill58.sanction.spigot.handler.Action;
 import com.elikill58.sanction.spigot.handler.ActionType;
+import com.elikill58.sanction.spigot.hook.EssentialsHook;
 import com.elikill58.sanction.spigot.inventories.InventoryManager;
 import com.elikill58.sanction.spigot.inventories.hook.ReportInventory;
 import com.elikill58.sanction.spigot.inventories.hook.SanctionConfirmInventory;
@@ -82,6 +83,11 @@ public class SanctionSpigot extends JavaPlugin {
 		pm.registerEvents(new InvEnderSeeListeners(), this);
 
 		hasDiscordSrv = pm.isPluginEnabled("DiscordSRV");
+		
+		if(pm.isPluginEnabled("Essentials")) {
+			EssentialsHook.load(this);
+			getLogger().info("Loaded Essentials support.");
+		}
 
 		InventoryManager.registerInventory("SANCTION_MAIN", new SanctionMainInventory());
 		InventoryManager.registerInventory("SANCTION_CATEGORY", new SanctionPlayerCategoryInventory());

@@ -6,7 +6,6 @@ messages:
   help: "&e/ss <player>"
   not_found: "&c%arg% n'est pas un joueur valide."
   no_touch: "&cCe joueur ne peux recevoir de sanction de votre part."
-  select: "&aSanction&7: %name%."
   reported: "&a%name% &7a bien été signalé."
   applied: "&6Sanction appliqué à &c%name% !"
   category:
@@ -40,11 +39,17 @@ messages:
       name: "%name%"
       lore:
       - "&7%ping%ms"
+  verifyafk:
+    help: "/verifyafk <pseudo> : Vérifier si un joueur est AFK"
+    afk: "&6%name% &aest afk."
+    not_afk: "&6%name% &dn'est pas afk."
+    teleported: "&aTéléporté au warp afk."
 permissions:
   admin: sanction.command.manager
   no_tp: sanction.use
   invsee_interact: sanction.invsee.interact
   endersee_interact: sanction.endersee.interact
+  verifyafk_alerts: verifyafk.alerts
 
 back-item:
   material: OAK_DOOR
