@@ -39,7 +39,7 @@ public class SanctionConfirmInventory extends AbstractInventory<SanctionConfirmH
 		inv.setItem(3, Items.getItem(config.getConfigurationSection("confirm.items.confirm")));
 		inv.setItem(5, Items.getItem(config.getConfigurationSection("confirm.items.cancel")));
 
-		inv.setItem(inv.getSize() - 1, action.toItem());
+		//inv.setItem(inv.getSize() - 1, action.toItem());
 		openInventorySync(p, inv);
 	}
 
