@@ -178,25 +178,25 @@ public class ItemStackBuilder implements Listener {
      * @return ce builder
      */
     public ItemStackBuilder lore(String... lore) {
+    	if(lore == null || (lore.length == 1 && lore[0] == ""))
+    		return this;
         List<String> list = this.itemMeta.hasLore() ? this.itemMeta.getLore() : new ArrayList<>();
     	for(String s : lore)
     		for(String temp : s.split("\\n"))
         		for(String tt : temp.split("/n"))
         			list.add(ChatUtils.applyColorCodes(tt));
-    	if(list.size() == 1 && list.get(0) == "")
-            this.itemMeta.setLore(Collections.emptyList());
         this.itemMeta.setLore(list);
         return this;
     }
     
     public ItemStackBuilder lore(List<String> lore) {
+    	if(lore == null || lore.isEmpty() || (lore.size() == 1 && lore.get(0) == ""))
+    		return this;
         List<String> list = this.itemMeta.hasLore() ? this.itemMeta.getLore() : new ArrayList<>();
     	for(String s : lore)
     		for(String temp : s.split("\\n"))
         		for(String tt : temp.split("/n"))
         			list.add(ChatUtils.applyColorCodes(tt));
-    	if(list.size() == 1 && list.get(0) == "")
-            this.itemMeta.setLore(Collections.emptyList());
         this.itemMeta.setLore(list);
         return this;
     }
