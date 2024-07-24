@@ -1,5 +1,6 @@
 package com.elikill58.sanction.spigot;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -57,7 +58,8 @@ public class SanctionSpigot extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		instance = this;
-		saveDefaultConfig();
+		if(!new File(this.getDataFolder(), "config.yml").exists()) // if file not found
+			saveDefaultConfig();
 		loadActions();
 		getCommand("report").setExecutor(new ReportCommand());
 		getCommand("spec").setExecutor(new SpecCommand());

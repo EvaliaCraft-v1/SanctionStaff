@@ -130,15 +130,11 @@ kick:
     main:
       material: STICK
       name: "Kick"
-      lore:
-      - "&7Options pour kick le joueur"
 mute:
   items:
     main:
       material: PAPER
       name: "Mute"
-      lore:
-      - "&7Options pour mute le joueur"
   actions:
     1:
       slot: 10
@@ -159,8 +155,6 @@ ban:
     main:
       material: BOOK
       name: "Ban"
-      lore:
-      - "&7Options pour ban le joueur"
   actions:
     1:
       slot: 10
@@ -181,8 +175,6 @@ banrsstaff:
     main:
       material: BOOK
       name: "Ban"
-      lore:
-      - "&7Options pour ban le joueur"
   actions:
     1:
       slot: 10
@@ -202,8 +194,6 @@ report:
     main:
       material: BOOK
       name: "Ban"
-      lore:
-      - "&7Options pour ban le joueur"
   actions:
     1:
       slot: 10

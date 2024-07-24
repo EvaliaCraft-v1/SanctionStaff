@@ -1,6 +1,7 @@
 package com.elikill58.sanction.spigot.utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -182,6 +183,8 @@ public class ItemStackBuilder implements Listener {
     		for(String temp : s.split("\\n"))
         		for(String tt : temp.split("/n"))
         			list.add(ChatUtils.applyColorCodes(tt));
+    	if(list.size() == 1 && list.get(0) == "")
+            this.itemMeta.setLore(Collections.emptyList());
         this.itemMeta.setLore(list);
         return this;
     }
@@ -192,6 +195,8 @@ public class ItemStackBuilder implements Listener {
     		for(String temp : s.split("\\n"))
         		for(String tt : temp.split("/n"))
         			list.add(ChatUtils.applyColorCodes(tt));
+    	if(list.size() == 1 && list.get(0) == "")
+            this.itemMeta.setLore(Collections.emptyList());
         this.itemMeta.setLore(list);
         return this;
     }
