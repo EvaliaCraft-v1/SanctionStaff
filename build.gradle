@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     id 'java-library'
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'io.github.goooler.shadow' version '8.1.7'
 }
 repositories {
     mavenCentral()
@@ -46,6 +46,7 @@ dependencies {
 
 sourceCompatibility = JavaVersion.VERSION_21
 targetCompatibility = JavaVersion.VERSION_21
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 archivesBaseName = 'SanctionStaff'
 
@@ -70,6 +71,6 @@ shadowJar {
 
 	def pluginDir = System.getProperty('plugins.dir')
 	if (pluginDir != null) {
-	    destinationDir = file(pluginDir)
+	    into pluginDir
 	}
 }
