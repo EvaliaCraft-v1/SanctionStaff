@@ -26,7 +26,7 @@ public class StaffMode {
 		STAFFS.add(p);
 		p.performCommand("vanish on");
 		PlayerInventory inv = p.getInventory();
-		StaffModeInventory.save(p.getUniqueId(), inv);
+		StaffModeInventory.save(p, inv);
 		inv.setArmorContents(null);
 		inv.clear();
 		for(int i = 0; i < 9; i++)
@@ -34,12 +34,13 @@ public class StaffMode {
 		for(StaffFeatures sf : StaffFeatures.values()) {
 			inv.setItem(sf.getSlot(), sf.getItem());
 		}
+		p.setAllowFlight(true);
 	}
 
 	public static void stopStaffMode(Player p) {
 		Msg.sendMsg(p, "staffmode.disabled");
 		STAFFS.remove(p);
 		p.performCommand("vanish off");
-		StaffModeInventory.restore(p.getUniqueId(), p.getInventory());
+		StaffModeInventory.restore(p, p.getInventory());
 	}
 }
