@@ -33,7 +33,6 @@ echo "OS used: $os with $extension"
 echo "Check in $JAVA_HOME for java versions..."
 
 java17=unknown
-java21=unknown
 
 function installJDK() {
    echo "Failed to find Java $1. Downloading it..."
@@ -47,7 +46,7 @@ function installJDK() {
    rm "Java$1$extension"
 }
 
-if [[ $java16 == *"unknown"* || $java17 == *"unknown"* || $java21 == *"unknown"* ]]; then # if at least one JAVA is NOT set
+if [[ $java17 == *"unknown"* ]]; then # if at least one JAVA is NOT set
    for javaVersionPath in $JAVA_HOME; do
        if [[ $javaVersionPath == *"17."* ]]; then # check if has "17."
           java17="$javaVersionPath/java$executable"
@@ -56,14 +55,6 @@ if [[ $java16 == *"unknown"* || $java17 == *"unknown"* || $java21 == *"unknown"*
           if [ $ret_code != 0 ]; then
              echo "Wrong Java 17 path. Don't using it ..."
              java17=unknown
-          fi
-       elif [[ $javaVersionPath == *"21."* ]]; then # check if has "21."
-          java21="$javaVersionPath/java$executable"
-          eval "\"$java21\" -version"
-          ret_code=$?
-          if [ $ret_code != 0 ]; then
-             echo "Wrong Java 21 path. Don't using it ..."
-             java21=unknown
           fi
        fi
    done
@@ -76,18 +67,9 @@ if [[ $java16 == *"unknown"* || $java17 == *"unknown"* || $java21 == *"unknown"*
       fi
      java17="$PWD/jdk-17/bin/java$executable"
    fi
-   if [[ $java21 == *"unknown"* ]]; then
-      if [ -d "./jdk-21" ]; then
-         echo "Java 21 and already downloaded, using this version..."
-      else
-         installJDK 21 "https://download.oracle.com/java/21/latest/jdk-21_$os-x64_bin$extension"
-      fi
-     java21="$PWD/jdk-21/bin/java$executable"
-   fi
 fi
 
 echo "Using java17: $java17"
-echo "Using java21: $java21"
 
 echo "-------- WARN --------"
 echo ""
@@ -116,11 +98,7 @@ for mcVersion in "1.20.2"; do # all remapped versions
       if [ -d "$HOME/.m2/repository/org/spigotmc/spigot/$snap" ]; then
          echo "Found incomplete repository for $mcVersion. Running remapping BuildTools ..."
       fi
-      if [[ $mcVersion == "1.20.6" || $mcVersion == "1.21" ]]; then
-         mcCmd="\"$java21\" -jar BuildTools.jar --rev $mcVersion --remapped"
-      else
-         mcCmd="\"$java17\" -jar BuildTools.jar --rev $mcVersion --remapped"
-      fi
+      mcCmd="\"$java17\" -jar BuildTools.jar --rev $mcVersion --remapped"
       echo "Running $mcCmd ..."
       eval $mcCmd
       if [ ! -f "spigot-$mcVersion.jar" ]; then # if build failed

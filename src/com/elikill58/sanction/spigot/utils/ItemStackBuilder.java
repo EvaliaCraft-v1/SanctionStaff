@@ -1,7 +1,6 @@
 package com.elikill58.sanction.spigot.utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;

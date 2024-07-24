@@ -44,9 +44,7 @@ dependencies {
     compileOnly 'net.essentialsx:EssentialsX:2.20.1'
 }
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 archivesBaseName = 'SanctionStaff'
 
