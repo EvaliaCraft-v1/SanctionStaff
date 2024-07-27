@@ -39,3 +39,10 @@ jobs:
         path: build/libs/*.jar
         name: SanctionStaff
         compression-level: 0
+    - name: Send file to discord channel
+      uses: sinshutu/upload-to-discord@master
+      # if last action is fine
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      with:
+        args: build/libs/*.jar
