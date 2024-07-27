@@ -61,6 +61,9 @@ back-item:
   material: OAK_DOOR
   name: "&cRetour"
 
+# Temps en millisecondes
+verifyafk-time: 10000
+
 main:
   items:
     head:

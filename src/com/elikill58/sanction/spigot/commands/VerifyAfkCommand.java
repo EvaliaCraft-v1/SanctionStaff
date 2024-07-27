@@ -41,6 +41,7 @@ public class VerifyAfkCommand implements CommandExecutor {
 		Msg.sendMsg(p, "verifyafk." + key, "%name%", cible.getName());
 		TextComponent text = new TextComponent();
 		text.addExtra(create("verifyafk.to_warp", "/verifyafk " + cible.getName() + " tp_to_warp"));
+		text.addExtra(" ");
 		text.addExtra(create("verifyafk.sanction", "/sanction " + cible.getName()));
 		p.spigot().sendMessage(text);
 	}

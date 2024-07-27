@@ -1,7 +1,7 @@
 package com.elikill58.sanction.spigot.hook;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -19,19 +19,20 @@ import net.ess3.api.events.AfkStatusChangeEvent;
 
 public class EssentialsHook implements Listener {
 
-	private static final List<IUser> afkPlayers = new ArrayList<>();
+	private static final HashMap<IUser, Long> afkPlayers = new HashMap<>();
 	
 	@SuppressWarnings("deprecation")
 	public static void load(SanctionSpigot pl) {
 		Bukkit.getPluginManager().registerEvents(new EssentialsHook(), pl);
 		
 		Bukkit.getScheduler().runTaskTimer(pl, () -> {
-			for(IUser user : new ArrayList<>(afkPlayers)) {
-				long diff = System.currentTimeMillis() - user.getAfkSince();
-				if(diff > 10 * 60 * 1000) { // 10 minutes afk
+			for(Entry<IUser, Long> entry : new HashMap<>(afkPlayers).entrySet()) {
+				IUser user = entry.getKey();
+				long diff = System.currentTimeMillis() - entry.getValue();
+				if(diff > pl.getConfig().getLong("verifyafk-time", 10 * 1000)) { // 10 minutes afk
 					afkPlayers.remove(user);
 					Bukkit.getOnlinePlayers().forEach(all -> {
-						if(all.hasPermission(SanctionSpigot.getInstance().getConfig().getString("permissions.verifyafk_alerts", "verifyafk.alerts"))) {
+						if(all.hasPermission(pl.getConfig().getString("permissions.verifyafk_alerts", "verifyafk.alerts"))) {
 							VerifyAfkCommand.sendMsg(all, user.getBase(), "afk");
 						}
 					});
@@ -61,7 +62,7 @@ public class EssentialsHook implements Listener {
 	@EventHandler
 	public void onAfkChange(AfkStatusChangeEvent e) {
 		if(e.getValue()) {
-			afkPlayers.add(e.getAffected());
+			afkPlayers.put(e.getAffected(), System.currentTimeMillis());
 		}
 	}
 }
