@@ -25,3 +25,5 @@ commands:
     permmission: sanction.invsee
   endersee:
     permmission: sanction.endersee
+  verifyafk:
+    permmission: sanction.verifyafk

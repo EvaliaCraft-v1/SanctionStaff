@@ -64,11 +64,18 @@ processResources {
 
 compileJava.options.encoding = 'UTF-8'
 
+task prepareServer(type: Copy) {
+    from shadowJar.outputs
+    def pluginDir = System.getProperty('plugins.dir')
+    if (pluginDir == null) {
+        enabled(false)
+    } else {
+        into pluginDir
+    }
+}
+
+build.dependsOn shadowJar
+
 shadowJar {
     archiveFileName = "SanctionStaff.jar"
-
-	def pluginDir = System.getProperty('plugins.dir')
-	if (pluginDir != null) {
-	    into pluginDir
-	}
 }

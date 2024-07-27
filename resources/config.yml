@@ -44,6 +44,12 @@ messages:
     afk: "&6%name% &aest afk."
     not_afk: "&6%name% &dn'est pas afk."
     teleported: "&aTéléporté au warp afk."
+    to_warp:
+      text: "Téléporter au warp AFK"
+      hover: "Cliquez pour téléporter"
+    sanction:
+      text: "Sanctionner"
+      hover: "Cliquez pour sanctionner"
 permissions:
   admin: sanction.command.manager
   no_tp: sanction.use
@@ -71,8 +77,6 @@ main:
     head_offline:
       material: PLAYER_HEAD
       name: "&a%name%"
-      lore:
-      - "&7Clic pour find (offline)"
       command: "find %name%"
       proxy: true
     sanctions:
@@ -83,24 +87,16 @@ main:
     dupeip:
       material: NAME_TAG
       name: "&aDupeip"
-      lore:
-      - "&7Dupeip le joueur"
       command: "dupeip %name%"
       proxy: false
     history:
       material: BOOK
       name: "&aHistorique"
-      lore:
-      - "&7Voir l'historique du joueur"
       command: "history %name%"
       proxy: false
     teleport:
       material: COMPASS
       name: "&aTéléportation"
-      lore:
-      - "&7Se téléporter au joueur"
-      - ""
-      - "&cAttention: Soyez bien en vanish AVANT de vous TP"
       command: "teleport %name%"
       proxy: false
       as_player: true
@@ -108,8 +104,6 @@ main:
       command: "mycmd"
       material: BELL
       name: "&aMa cmd"
-      lore:
-      - "&7Lancement de mycmd"
       command: "mycmd"
       proxy: false
 confirm:
@@ -117,13 +111,9 @@ confirm:
     confirm:
       material: LIME_WOOL
       name: "&aConfirmer"
-      lore:
-      - "&7Cliquez pour confirmer"
     cancel:
       material: RED_WOOL
       name: "&aAnnuler"
-      lore:
-      - "&7Cliquez pour annuler"
 
 kick:
   items:
@@ -139,15 +129,7 @@ mute:
     1:
       slot: 10
       name: "&cInsulte"
-      lore:
-      - "&7Mute pour 2h pour insulte"
       command: "mute %name% 2h Insulte --sender-uuid=%executor_uuid% --sender=%executor%"
-      permission: "sanction.mute"
-    2:
-      slot: 11
-      name: "&cMenace de mort"
-      lore: "&7Mute pour menace de mort"
-      command: "ban %name% incrr --sender-uuid=%executor_uuid% --sender=%executor%"
       permission: "sanction.mute"
 ban:
   permission: "sancton.use.bans"
@@ -159,16 +141,8 @@ ban:
     1:
       slot: 10
       name: "Ban test"
-      lore: "Incroyable ban"
       command: "ban %name% incrr"
       permission: "sanction.ban"
-    2:
-      slot: 11
-      name: "Ban 2"
-      lore: "Incroyable ban"
-      command: "ban %name% incrr"
-      proxy: false
-      permission: "sanction.ban2"
 banrsstaff:
   permission: "sancton.use.bans"
   items:
@@ -179,16 +153,8 @@ banrsstaff:
     1:
       slot: 10
       name: "Ban test"
-      lore: "Incroyable ban"
       command: "ban %name% incrr"
       permission: "sanction.ban"
-    2:
-      slot: 11
-      name: "Ban 2"
-      lore: "Incroyable ban"
-      command: "ban %name% incrr"
-      proxy: false
-      permission: "sanction.ban2"
 report:
   items:
     main:
@@ -200,11 +166,6 @@ report:
       name: "Spam"
       lore: "&7Spam dans le chat"
       reason: "Spam"
-    2:
-      slot: 11
-      name: "Cheat"
-      lore: "&7Cheat en jeu"
-      reason: "Cheat"
 
 staffmode:
   items:

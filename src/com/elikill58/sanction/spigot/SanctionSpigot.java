@@ -20,6 +20,7 @@ import com.elikill58.sanction.spigot.commands.ReportCommand;
 import com.elikill58.sanction.spigot.commands.SanctionCommand;
 import com.elikill58.sanction.spigot.commands.SpecCommand;
 import com.elikill58.sanction.spigot.commands.StaffCommand;
+import com.elikill58.sanction.spigot.commands.VerifyAfkCommand;
 import com.elikill58.sanction.spigot.handler.Action;
 import com.elikill58.sanction.spigot.handler.ActionType;
 import com.elikill58.sanction.spigot.hook.EssentialsHook;
@@ -67,6 +68,7 @@ public class SanctionSpigot extends JavaPlugin {
 		getCommand("banrsstaff").setExecutor(new BanRsStaffCommand());
 		getCommand("invsee").setExecutor(new InvSeeCommand());
 		getCommand("endersee").setExecutor(new EnderSeeCommand());
+		getCommand("verifyafk").setExecutor(new VerifyAfkCommand());
 		getCommand("sanction").setExecutor(new SanctionCommand());
 		getCommand("sanctionrl").setExecutor(new CommandExecutor() {
 			@Override
