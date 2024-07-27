@@ -20,7 +20,7 @@ public class VerifyAfkCommand implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		if (!(sender instanceof Player p))
 			return false;
-		if (args.length == 1) {
+		if (args.length >= 1) {
 			Player cible = Bukkit.getPlayer(args[0]);
 			if (cible == null) {
 				Msg.sendMsg(p, "not_found", "%arg%", args[0]);
