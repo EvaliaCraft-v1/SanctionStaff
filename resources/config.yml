@@ -82,8 +82,6 @@ main:
     sanctions:
       material: ENCHANTED_BOOK
       name: "&aSanction"
-      lore:
-      - "&7Sanctionner le joueur"
     dupeip:
       material: NAME_TAG
       name: "&aDupeip"
