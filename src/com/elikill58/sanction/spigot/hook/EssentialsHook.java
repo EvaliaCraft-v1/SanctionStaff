@@ -12,7 +12,6 @@ import org.bukkit.event.Listener;
 
 import com.earth2me.essentials.Essentials;
 import com.elikill58.sanction.spigot.SanctionSpigot;
-import com.elikill58.sanction.spigot.commands.VerifyAfkCommand;
 
 import net.ess3.api.IUser;
 import net.ess3.api.events.AfkStatusChangeEvent;
@@ -31,11 +30,7 @@ public class EssentialsHook implements Listener {
 				long diff = System.currentTimeMillis() - entry.getValue();
 				if(diff > pl.getConfig().getLong("verifyafk-time", 10 * 1000)) { // 10 minutes afk
 					afkPlayers.remove(user);
-					Bukkit.getOnlinePlayers().forEach(all -> {
-						if(all.hasPermission(pl.getConfig().getString("permissions.verifyafk_alerts", "verifyafk.alerts"))) {
-							VerifyAfkCommand.sendMsg(all, user.getBase(), "afk");
-						}
-					});
+					tpToAfk(user.getBase());
 				}
 			}
 		}, 20, 20);
@@ -63,6 +58,7 @@ public class EssentialsHook implements Listener {
 	public void onAfkChange(AfkStatusChangeEvent e) {
 		if(e.getValue()) {
 			afkPlayers.put(e.getAffected(), System.currentTimeMillis());
-		}
+		} else
+			afkPlayers.remove(e.getAffected());
 	}
 }
